@@ -1,0 +1,727 @@
+/********************************************************
+ * <z64.me> zzrtl script for extracting assets from OoT *
+ ********************************************************/
+
+/* global variables */
+char *g_names_scene;
+
+/* how to use */
+/*   uncomment the enum associated with the OoT version you  *
+ *   are targeting, and comment out or delete the others     */
+
+/* OoT debug */
+enum {
+	TBL_OBJECT               = 0x00B9E6C8  // object table
+	, TBL_OBJECT_ENTRIES     = 402         // object count
+	, TBL_ACTOR              = 0x00B8D440  // actor overlay table
+	, TBL_ACTOR_ENTRIES      = 471         // actor overlay count
+	, TBL_PARTICLE           = 0x00B8CB50  // particle overlay table
+	, TBL_PARTICLE_ENTRIES   = 37          // particle overlay count
+	, TBL_SCENE              = 0x00BA0BB0  // scene table
+	, TBL_SCENE_ENTRIES      = 110         // scene count
+	, TBL_ROUTE              = 0x00B9F360  // route table
+	, TBL_ROUTE_ENTRIES      = 1556        // route count
+	, TBL_DMA                = 0x00012F70  // dma table
+	, TBL_DMA_ENTRIES        = 1548        // dma entries
+	
+	, TITLECARD_W            = 144         // title card dimensions
+	, TITLECARD_H            = 24          // use 72 to include de, fr
+	, VRAM_CODE              = 0x8001CE60  // vram start of code
+	, VROM_CODE              = 0x00A94000  // vrom start of code
+	, VROM_PLAYER            = 0x00C010B0  // vrom start of player_actor
+	
+	, DMA_ITEM_FIELD         = 9           // icon_item_field_static
+	, DMA_ITEM_LOCALIZED     = 14          // last icon_item_x_static
+	, DMA_CODE               = 28
+	, DMA_OVL_TITLE
+	, DMA_OVL_SELECT
+	, DMA_OVL_OPENING
+	, DMA_OVL_FILE_CHOOSE
+	, DMA_OVL_KALEIDO_SCOPE
+	, DMA_OVL_PLAYER_ACTOR
+	, DMA_OVL_MAP_MARK_DATA
+	
+	, DMA_ACTOR_FIRST        = 36          // En_Test
+	, DMA_ACTOR_LAST         = 497         // Shot_Sun
+	, DMA_OBJECT_FIRST       = 498         // gameplay_keep
+	, DMA_OBJECT_LAST        = 879         // object_zl4
+	, DMA_G_PN_FIRST         = 880         // g_pn_01
+	, DMA_G_PN_LAST          = 936         // g_pn_57
+	, DMA_SKYBOX_FIRST       = 941         // vr_fine0_static
+	, DMA_SKYBOX_LAST        = 1004        // vr_FCVR_pal_static
+	, DMA_SCENE_FIRST        = 1007        // syotes_scene
+	, DMA_SCENE_LAST         = 1517        // test01_room_0
+	, DMA_UNUSED_FIRST       = 1518        // bump_texture_static
+	, DMA_UNUSED_LAST        = 1530        // anime_texture_6_static
+	, DMA_SOFTSPRITE         = 1531        // softsprite_matrix_static
+	, DMA_BLANK_FIRST        = 1532        // first blank dma entry
+	, DMA_BLANK_LAST         = 1547        // last blank dma entry
+	
+	, ACTID_LINK             = 0           // link's actor id
+};
+
+/* OoT NTSC 1.0
+enum {
+	TBL_OBJECT               = 0x00B6EF58  // object table
+	, TBL_OBJECT_ENTRIES     = 402         // object count
+	, TBL_ACTOR              = 0x00B5E490  // actor overlay table
+	, TBL_ACTOR_ENTRIES      = 471         // actor overlay count
+	, TBL_PARTICLE           = 0x00B5DBA0  // particle overlay table
+	, TBL_PARTICLE_ENTRIES   = 37          // particle overlay count
+	, TBL_SCENE              = 0x00B71440  // scene table
+	, TBL_SCENE_ENTRIES      = 101         // scene count
+	, TBL_ROUTE              = 0x00B6FBF0  // route table
+	, TBL_ROUTE_ENTRIES      = 1556        // route count
+	, TBL_DMA                = 0x00007430  // dma table
+	, TBL_DMA_ENTRIES        = 1526        // dma entries
+	
+	, TITLECARD_W            = 144         // title card dimensions
+	, TITLECARD_H            = 48          // use 24 for jp only
+	, VRAM_CODE              = 0x800110A0  // vram start of code
+	, VROM_CODE              = 0x00A87000  // vrom start of code
+	, VROM_PLAYER            = 0x00BCDB70  // vrom start of player_actor
+	
+	, DMA_ITEM_FIELD         = 10          // icon_item_field_static
+	, DMA_ITEM_LOCALIZED     = 14          // last icon_item_x_static
+	, DMA_CODE               = 27
+	, DMA_OVL_TITLE          = 29
+	, DMA_OVL_SELECT
+	, DMA_OVL_OPENING
+	, DMA_OVL_FILE_CHOOSE
+	, DMA_OVL_KALEIDO_SCOPE
+	, DMA_OVL_PLAYER_ACTOR
+	, DMA_OVL_MAP_MARK_DATA
+	
+	, DMA_ACTOR_FIRST        = 36          // En_Test
+	, DMA_ACTOR_LAST         = 497         // Shot_Sun
+	, DMA_OBJECT_FIRST       = 498         // gameplay_keep
+	, DMA_OBJECT_LAST        = 879         // object_zl4
+	, DMA_G_PN_FIRST         = 880         // g_pn_01
+	, DMA_G_PN_LAST          = 936         // g_pn_57
+	, DMA_SKYBOX_FIRST       = 941         // vr_fine0_static
+	, DMA_SKYBOX_LAST        = 1004        // vr_FCVR_pal_static
+	, DMA_SCENE_FIRST        = 1007        // ddan_scene
+	, DMA_SCENE_LAST         = 1495        // ganontikasonogo_room_1
+	, DMA_UNUSED_FIRST       = 1496        // bump_texture_static
+	, DMA_UNUSED_LAST        = 1508        // anime_texture_6_static
+	, DMA_SOFTSPRITE         = 1509        // softsprite_matrix_static
+	, DMA_BLANK_FIRST        = 1510        // first blank dma entry
+	, DMA_BLANK_LAST         = 1525        // last blank dma entry
+	
+	, ACTID_LINK             = 0           // link's actor id
+}; */
+
+/* valid (fmt, bpp) options for png functions */
+enum n64texconv_fmt
+{
+	N64TEXCONV_RGBA = 0
+	, N64TEXCONV_YUV
+	, N64TEXCONV_CI
+	, N64TEXCONV_IA
+	, N64TEXCONV_I
+};
+enum n64texconv_bpp
+{
+	N64TEXCONV_4 = 0
+	, N64TEXCONV_8
+	, N64TEXCONV_16
+	, N64TEXCONV_32
+};
+
+enum bool
+{
+	false = 0
+	, true = 1
+	, compress = 1
+};
+
+void
+route(struct rom *rom)
+{
+	FILE *fp;
+	char *music;
+	char *card;
+	int fadeout;
+	int fadein;
+	int index;
+	int scene;
+	int spawn;
+	int var;
+	int sep;
+	
+	/* separator whitespace */
+	sep = 8;
+	
+	/* open route.txt for writing */
+	fp = fopen("route.txt", "wb");
+		
+	/* print table header */
+	fprintf(fp, "%-*s", sep, "index");
+	fprintf(fp, "%-*s", sep, "scene");
+	fprintf(fp, "%-*s", sep, "spawn");
+	fprintf(fp, "%-*s", sep, "music");
+	fprintf(fp, "%-*s", sep, "title");
+	fprintf(fp, "%-*s", sep, "fadein");
+	fprintf(fp, "%-*s", sep, "fadeout");
+	fprintf(fp, "\n");
+	
+	index = 0;
+	while (index < TBL_ROUTE_ENTRIES)
+	{
+		/* go to table entry */
+		rom.seek(TBL_ROUTE + index * 4);
+		
+		/* parse table entry */
+		scene = rom.read8();
+		spawn = rom.read8();
+		var   = rom.read16();
+		
+		/* unpack var */
+		music   = (var & 0x8000) ? "go" : "stop";
+		card    = (var & 0x4000) ? "on" : "off" ;
+		fadein  = (var & 0x3F80) >> 7;
+		fadeout = (var & 0x007F);
+		
+		/* print table entry */
+		fprintf(fp, "0x%04X", index);
+		fprintf(fp, "%*d", sep, scene);
+		fprintf(fp, "%*d", sep, spawn);
+		fprintf(fp, "%*s", sep, music);
+		fprintf(fp, "%*s", sep, card);
+		fprintf(fp, "%*d", sep, fadein);
+		fprintf(fp, "%*d", sep, fadeout);
+		fprintf(fp, "\n");
+		
+		/* advance to next entry */
+		index++;
+	}
+	
+	fclose(fp);
+}
+
+void
+scene(struct rom *rom)
+{
+	FILE *fp;
+	char *b;
+	char *b_end;
+	char *room_name;
+	char *name;
+	void *title_buf;
+	char room_count;
+	int index;
+	int start;
+	int end;
+	int scard;
+	int ecard;
+	int rinit;
+	int unk_a;
+	int unk_b;
+	int sz;
+	
+	/* allocate room name */
+	room_name = malloc(16);
+	
+	/* allocate reusable title card memory */
+	title_buf = malloc(TITLECARD_W * TITLECARD_H * 4);
+	
+	/* enter and parse folder */
+	dir_enter("scene");
+	
+	/* repeats for every item in the list */
+	index = 0;
+	while (index < TBL_SCENE_ENTRIES)
+	{
+		/* display progress */
+		printf("\r""scene %d/%d: ", index, TBL_SCENE_ENTRIES - 1);
+		
+		/* get entry name */
+		/* NOTE: this is by no means necessary; you can delete this  *
+		 *       line and substitute `name` with `0` in dir_mkname() *
+		 *       if you want the folder name to contain only index   */
+		name = substring(g_names_scene, index);
+		
+		/* create and enter directory */
+		dir_enter(dir_mkname(index, name));
+		
+		/* go to table entry */
+		rom.seek(TBL_SCENE + index * 20);
+		
+		/* parse table entry */
+		start = rom.read32();  /* vrom start          */
+		end   = rom.read32();  /* vrom end            */
+		scard = rom.read32();  /* title card start    */
+		ecard = rom.read32();  /* title card end      */
+		unk_a = rom.read8();   /* unknown             */
+		rinit = rom.read8();   /* render init func id */
+		unk_b = rom.read8();   /* unknown             */
+		
+		/* used entries have non-zero start */
+		if (start)
+		{
+			/* extract file */
+			rom.extract("scene.zscene", start, end);
+			sz = end - start;
+			
+			/* grab raw scene data */
+			b = rom.raw(start);
+			b_end = b + sz;
+			
+			/* search scene header for room command (0x04) */
+			while (b < b_end && *b != 0x04)
+			{
+				/* end loop conditions */
+				if (
+					*b == 0x14          /* end command     */
+					|| u8(*b) >= 0x20   /* invalid command */
+				)
+					b = b_end;
+				
+				/* advance to next header command */
+				b = b + 8;
+			}
+			
+			/* failed to locate room command, or it is invalid */
+			if (
+				b >= b_end                   /* no room command found */
+				|| b[1] <= 0                 /* invalid room count    */
+				|| get16(b+2)                /* bytes 2, 3 aren't 0   */
+				|| b[4] != 0x02              /* invalid ram segment   */
+				|| (b[7] & 3)                /* unaligned pointer     */
+				|| get24(b+5) + b[1]*8 > sz  /* pointer exceeds file  */
+			)
+				die("invalid scene (%08X - %08X)", start, end);
+			
+			/* grab room list pointed to by 0x04 command */
+			room_count = b[1];
+			b = rom.raw(start + get24(b+5)) + room_count * 8;
+			
+			/* extract each room */
+			while (room_count)
+			{
+				/* decrement */
+				room_count--;
+				b = b - 8;
+				
+				/* extract file */
+				sprintf(room_name, "room_%d.zmap", room_count);
+				rom.extract(room_name, get32(b), get32(b+4));
+			}
+		}
+		
+		/* if title card is used, its start will be non-zero */
+		if (scard)
+		{
+			/* extract title.png */
+			rom.extract_png(
+				"title.png"
+				, title_buf
+				, scard
+				, 0
+				, TITLECARD_W
+				, TITLECARD_H
+				, N64TEXCONV_IA
+				, N64TEXCONV_8
+			);
+		}
+		
+		/* write table settings to conf.txt */
+		fp = fopen("conf.txt", "wb");
+		fprintf(fp, "unk_a        %d\n", unk_a);
+		fprintf(fp, "unk_b        %d\n", unk_b);
+		fprintf(fp, "shader       %d\n", rinit);
+		fclose(fp);
+		
+		/* leave directory */
+		dir_leave();
+		
+		/* advance to next entry */
+		index++;
+	}
+	
+	/* cleanup */
+	dir_leave();
+	free(room_name);
+	free(title_buf);
+	printf("success!\n");
+}
+
+void
+particle(struct rom *rom)
+{
+	FILE *fp;
+	int index;
+	int start;
+	int end;
+	int vram;
+	int ivar;
+	int unk;
+	
+	/* enter and parse folder */
+	dir_enter("particle");
+	
+	/* repeats for every item in the list */
+	index = 0;
+	while (index < TBL_PARTICLE_ENTRIES)
+	{
+		/* display progress */
+		printf("\r""particle %d/%d: ", index, TBL_PARTICLE_ENTRIES - 1);
+		
+		/* create and enter directory */
+		dir_enter(dir_mkname(index, 0));
+		
+		/* go to table entry */
+		rom.seek(TBL_PARTICLE + index * 28);
+		
+		/* parse table entry */
+		start = rom.read32();  /* vrom start  */
+		end   = rom.read32();  /* vrom end    */
+		vram  = rom.read32();  /* vram start  */
+		rom.read32();          /* vram end    */
+		rom.read32();          /* ram address */
+		ivar = rom.read32();   /* init vars   */
+		unk = rom.read32();    /* unknown     */
+		
+		/* used entries have non-zero start */
+		if (start)
+		{
+			/* go to rom offset of this particle overlay's init vars */
+			rom.seek(start + u32op(ivar, "-", vram));
+			
+			/* handle "tuna" */
+			/* NOTE: this is used for easy auto-detection in the build *
+			 *       script; if you have a different preferred method  *
+			 *       of managing the initialization variables, you're  *
+			 *       free to change the scripts to use your own logic  */
+			rom.write("tuna", 4);
+			
+			/* extract file */
+			rom.extract("actor.zovl", start, end);
+		}
+		
+		/* write vram and unk to conf.txt */
+		fp = fopen("conf.txt", "wb");
+		fprintf(fp, "vram         0x%08X\n", vram);
+		fprintf(fp, "unknown      0x%08X\n", unk);
+		fclose(fp);
+		
+		/* leave directory */
+		dir_leave();
+		
+		/* advance to next entry */
+		index++;
+	}
+	
+	/* cleanup */
+	dir_leave();
+	printf("success!\n");
+}
+
+void
+actor(struct rom *rom)
+{
+	FILE *fp;
+	char *name;
+	int index;
+	int start;
+	int end;
+	int vram;
+	int ivar;
+	int atype;
+	int naddr;
+	
+	/* enter and parse folder */
+	dir_enter("actor");
+	
+	/* repeats for every item in the list */
+	index = 0;
+	while (index < TBL_ACTOR_ENTRIES)
+	{
+		/* display progress */
+		printf("\r""actor %d/%d: ", index, TBL_ACTOR_ENTRIES - 1);
+		
+		/* go to table entry */
+		rom.seek(TBL_ACTOR + index * 32);
+		
+		/* parse table entry */
+		start = rom.read32();  /* vrom start  */
+		end   = rom.read32();  /* vrom end    */
+		vram  = rom.read32();  /* vram start  */
+		rom.read32();          /* vram end    */
+		rom.read32();          /* ram address */
+		ivar  = rom.read32();  /* init vars   */
+		naddr = rom.read32();  /* name addr   */
+		atype = rom.read16();  /* alloc type  */
+		
+		/* get name string */
+		/* NOTE: an assumption is being made that naddr falls inside   *
+		 *       code's vram; this is fine for roms that have not been *
+		 *       drastically altered, and naddr is always 0 on retail  *
+		 *       roms anyway; just be aware of this if you have issues */
+		if (naddr)
+			name = rom.raw(u32op(naddr, "-", VRAM_CODE) + VROM_CODE);
+		else
+			name = 0;
+		
+		/* create and enter directory */
+		dir_enter(dir_mkname(index, name));
+		
+		/* used entries have non-zero start */
+		if (start)
+		{
+			/* go to rom offset of this actor overlay's init vars */
+			rom.seek(start + u32op(ivar, "-", vram));
+			
+			/* handle 0xDEAD 0xBEEF */
+			/* NOTE: this is used for easy auto-detection in the build *
+			 *       script; if you have a different preferred method  *
+			 *       of managing the initialization variables, you're  *
+			 *       free to change the scripts to use your own logic  */
+			rom.write16(0xDEAD);  /* 0x0000: table index    */
+			rom.seek_cur(8);      /* 0x0002: advance to 0xA */
+			rom.write16(0xBEEF);  /* 0x000A: padding        */
+			
+			/* extract file */
+			rom.extract("actor.zovl", start, end);
+		}
+		
+		/* write vram and atype to conf.txt */
+		fp = fopen("conf.txt", "wb");
+		fprintf(fp, "allocation   0x%04X\n", atype);
+		fprintf(fp, "vram         0x%08X\n", vram);
+		/* ivar override for actors that don't reference files */
+		if (!start && ivar)
+			fprintf(fp, "ivar         0x%08X\n", ivar);
+		fclose(fp);
+		
+		/* leave directory */
+		dir_leave();
+		
+		/* advance to next entry */
+		index++;
+	}
+	
+	/* cleanup */
+	dir_leave();
+	printf("success!\n");
+}
+
+void
+object(struct rom *rom)
+{
+	int index;
+	int start;
+	int end;
+	
+	/* enter and parse folder */
+	dir_enter("object");
+	
+	/* repeats for every item in the list */
+	index = 0;
+	while (index < TBL_OBJECT_ENTRIES)
+	{
+		/* display progress */
+		printf("\r""object %d/%d: ", index, TBL_OBJECT_ENTRIES - 1);
+		
+		/* create and enter directory */
+		dir_enter(dir_mkname(index, 0));
+		
+		/* go to table entry */
+		rom.seek(TBL_OBJECT + index * 8);
+		
+		/* parse table entry */
+		start = rom.read32();
+		end   = rom.read32();
+		
+		/* extract file */
+		rom.extract("zobj.zobj", start, end);
+		
+		/* leave directory */
+		dir_leave();
+		
+		/* advance to next entry */
+		index++;
+	}
+	
+	/* cleanup */
+	dir_leave();
+	printf("success!\n");
+}
+
+
+/* initialize name lists */
+void
+names()
+{
+	/* because zzrtl does not support arrays, each name *
+	 * list is a collection of zero-terminated strings; *
+	 * unused entries must still be represented in some *
+	 * way; do something like "unused\0" for those      */
+	
+	/* NOTE: this is completely optional and is here only to serve *
+	 *       as an example; we could even add actor, particle, and *
+	 *       object name lists if we wanted; if you do this, just  *
+	 *       just define a new global for each list and have at it */
+	
+	/* NOTE: if you wanted to make everything more compact at the  *
+	 *       expense of readability, you could put all the strings *
+	 *       "on\0""one\0""line\0""like\0""this\0"                 */
+	g_names_scene =
+		"Dungeon - Inside the Deku Tree\0"
+		"Dungeon - Dodongo's Cavern\0"
+		"Dungeon - Inside Jabu-Jabu's Belly\0"
+		"Dungeon - Forest Temple\0"
+		"Dungeon - Fire Temple\0"
+		"Dungeon - Water Temple\0"
+		"Dungeon - Spirit Temple\0"
+		"Dungeon - Shadow Temple\0"
+		"Dungeon - Bottom of the Well\0"
+		"Dungeon - Ice Cavern\0"
+		"Dungeon - Ganon's Tower\0"
+		"Dungeon - Gerudo Training Ground\0"
+		"Dungeon - Thieves' Hideout\0"
+		"Dungeon - Inside Ganon's Castle\0"
+		"Misc - Tower Escape Interior\0"
+		"Misc - Tower Escape Interior (Second Phase)\0"
+		"Game - Treasure Box Shop\0"
+		"Boss - Gohma\0"
+		"Boss - King Dodongo\0"
+		"Boss - Barinade\0"
+		"Boss - Phantom Ganon\0"
+		"Boss - Volvagia\0"
+		"Boss - Morpha\0"
+		"Boss - Twinrova\0"
+		"Boss - Bongo Bongo\0"
+		"Boss - Ganondorf\0"
+		"Misc - Tower Escape Exterior\0"
+		"PR - Market Entrance Day\0"
+		"PR - Market Entrance Night\0"
+		"PR - Market Entrance Ruins\0"
+		"PR - Back Alley Day\0"
+		"PR - Back Alley Night\0"
+		"PR - Market Day\0"
+		"PR - Market Night\0"
+		"PR - Market Ruins\0"
+		"PR - Temple of Time Exterior Day\0"
+		"PR - Temple of Time Exterior Night\0"
+		"PR - Temple of Time Exterior Ruins\0"
+		"House - Know-It-All\0"
+		"House - Twins\0"
+		"House - Mido\0"
+		"House - Saria\0"
+		"House - Carpenter Boss\0"
+		"House - Alley Green Man\0"
+		"Shop - Bazaar\0"
+		"Shop - Kokiri\0"
+		"Shop - Goron\0"
+		"Shop - Zora\0"
+		"Shop - Potion Kakariko\0"
+		"Shop - Potion Market\0"
+		"Shop - Bombchu\0"
+		"Shop - Mask\0"
+		"House - Link\0"
+		"House - Alley Dog Lady\0"
+		"House - Stable\0"
+		"House - Impa\0"
+		"House - Laboratory\0"
+		"House - Tent\0"
+		"House - Dampe\0"
+		"Fountain - Great Fairy Upgrades\0"
+		"Fountain - Normal\0"
+		"Fountain - Great Fairy Spells\0"
+		"Misc - Grottos\0"
+		"Grave - Redead\0"
+		"Grave - Fountain\0"
+		"Grave - Royal Family's Tomb\0"
+		"Game - Shooting Gallery\0"
+		"World - Temple of Time\0"
+		"World - Chamber of Sages\0"
+		"World - Castle Maze Day\0"
+		"World - Castle Maze Night\0"
+		"Misc - Cutscene Map\0"
+		"World - Windmill & Dampe's Grave\0"
+		"World - Fishing Pond\0"
+		"World - Zelda's Courtyard\0"
+		"Game - Bombchu Bowling\0"
+		"House - Ranch & Silo\0"
+		"House - Guard\0"
+		"House - Witch\0"
+		"Boss - Beast Ganon\0"
+		"House - Skulltula\0"
+		"World - Hyrule Field\0"
+		"World - Kakariko Village\0"
+		"World - Graveyard\0"
+		"World - Zora's River\0"
+		"World - Kokiri Forest\0"
+		"World - Sacred Forest Meadow\0"
+		"World - Lake Hylia\0"
+		"World - Zora's Domain\0"
+		"World - Zora's Fountain\0"
+		"World - Gerudo Valley\0"
+		"World - Lost Woods\0"
+		"World - Desert Colossus\0"
+		"World - Gerudo's Fortress\0"
+		"World - Haunted Wasteland\0"
+		"World - Hyrule Castle\0"
+		"World - Death Mountain Trail\0"
+		"World - Death Mountain Crater\0"
+		"World - Goron City\0"
+		"World - Lon Lon Ranch\0"
+		"World - Ganon's Tower\0"
+		"Test - Jungle Gym\0"
+		"Test - Strongbox Warp\0"
+		"Test - Depth Test\0"
+		"Test - Stalfos Miniboss\0"
+		"Test - Stalfos Boss\0"
+		"Test - Obsolete\0"
+		"Test - Hedge Maze\0"
+		"Test - SRD Grass Test\0"
+		"Test - Treasure Room\0"
+	;
+}
+
+int
+main(int argc, char **argv)
+{
+	struct rom *rom;
+	char *name;
+	FILE *fp;
+	
+	/* name of rom */
+	/* NOTE: the rom of the given name must exist *
+	 *       in the same directory as this .rtl   */
+	name = "oot-debug.z64";
+	
+	/* initialize name lists */
+	names();
+	
+	/* folder naming style */
+	dir_use_style("pre");
+	
+	/* load rom */
+	rom = rom.new(name);
+	
+	/* compressed roms are < 64 mb */
+	if (rom.size() < 0x04000000)
+		die("compressed roms are not supported");
+	
+	/* dump rom */
+	object(rom);
+	actor(rom);
+	particle(rom);
+	scene(rom);
+	route(rom);
+	
+	/* create .zzrpl */
+	fp = fopen("project.zzrpl", "wb");
+	fprintf(fp, "zzrtl          v0.01\n");
+	fprintf(fp, "baserom        \"%s\"\n", name);
+	/* zzplayas support */
+	fprintf(fp, "VROM_CODE      \"'%s'+0x%08X\"\n", name, VROM_CODE);
+	fprintf(fp, "VROM_PLAYER    \"'%s'+0x%08X\"\n", name, VROM_PLAYER);
+	fclose(fp);
+	
+	/* cleanup */
+	rom.free();
+	return 0;
+}
