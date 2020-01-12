@@ -1,0 +1,4 @@
+vram          0x80800000
+unknown       0x01000000
+"please do"   "work diligently"
+//optional      "output changes if you uncomment this line"
