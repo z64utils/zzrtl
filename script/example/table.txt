@@ -1,0 +1,3 @@
+scene   card   music   notes              fadein
+0x02     off    stop   "diligent work"         2
+0x03      on      go   "getting ocarina"       3
