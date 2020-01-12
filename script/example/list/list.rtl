@@ -1,0 +1,45 @@
+/***************************************
+ * <z64.me> zzrtl list parsing example *
+ ***************************************/
+
+/* list.txt (save in same directory as example)
+vram          0x80800000
+unknown       0x01000000
+"please do"   "work diligently"
+//optional      "output changes if you uncomment this line"
+*/
+
+int
+main(int argc, char **argv)
+{
+	struct conf *list;
+	char *optional;
+	char *pleasedo;
+	int   vram;
+	int   unknown;
+
+	/* load the list */
+	list = list.new("list.txt", "list");
+
+	/* retrieve variables */
+	vram      = list.get_int("vram");
+	unknown   = list.get_int("unknown");
+	pleasedo  = list.get_str("please do");
+	
+	/* how to do optional variables */
+	if (list.exists("optional"))
+		optional = list.get_str("optional");
+	else
+		optional = 0;
+
+	/* do something with the variables here */
+	printf("vram:          0x%X\n", vram);
+	printf("unknown:       0x%08X\n", unknown);
+	printf("'please do':  '%s'\n", pleasedo);
+	if (optional)
+		printf("optional:     '%s'\n", optional);
+
+	/* cleanup */
+	list.free();
+	return 0;
+}
