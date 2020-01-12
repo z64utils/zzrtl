@@ -1,0 +1,52 @@
+/****************************************
+ * <z64.me> zzrtl table parsing example *
+ ****************************************/
+
+/* table.txt (save in same directory as example)
+scene   card   music   notes              fadein
+0x02     off    stop   "diligent work"         2
+0x03      on      go   "getting ocarina"       3
+*/
+
+int
+main(int argc, char **argv)
+{
+	struct conf *table;
+	char *card;
+	char *music;
+	char *notes;
+	int   scene;
+	int   fadein;
+
+	/* load the table */
+	table = table.new("table.txt", "table");
+
+	/* now parse all the rows */
+	while (table.remaining())
+	{
+		/* retrieve variables */
+		scene  = table.get_int("scene");
+		card   = table.get_str("card");
+		music  = table.get_str("music");
+		fadein = table.get_int("fadein");
+		notes  = table.get_str("notes");
+		
+		/* on the first pass, each variable will be whatever the  *
+		 * first value row says it should be; on the second pass, *
+		 * it pulls from the next row; there is no third pass     */
+		
+		/* do something with the variables here */
+		printf("scene %d settings:\n", scene);
+		printf(" > card:   %s\n", card);
+		printf(" > music:  %s\n", music);
+		printf(" > fadein: %d\n", fadein);
+		printf(" > notes:  %s\n", notes);
+		
+		/* go to next row */
+		table.next();
+	}
+
+	/* cleanup */
+	table.free();
+	return 0;
+}
