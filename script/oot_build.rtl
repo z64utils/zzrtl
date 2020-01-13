@@ -2,6 +2,11 @@
  * <z64.me> zzrtl script for injecting assets into OoT *
  *******************************************************/
 
+/* this revision shows how to import a new ovl_player_actor  *
+ * that has been assembled with Noka's Custom Actor Toolkit; *
+ * this script assumes the new overlay is located in a misc  *
+ * folder that exists in the same directory as the zzrpl     */
+
 /* how to use */
 /* uncomment the enum associated with the OoT version you *
  * are targeting, and comment out or delete the others    */
@@ -55,6 +60,16 @@ enum {
 	, DMA_BLANK_LAST         = 1547        // last blank dma entry
 	
 	, ACTID_LINK             = 0           // link's actor id
+	
+	, EXT_LINKOFFSET         = 0x00BA4360  // vrom start, end link ofs
+	, EXT_LINKFUNC_HI_0      = 0x00B288F8  // hi/lo pairs of link funcs
+	, EXT_LINKFUNC_LO_0      = 0x00B28900
+	, EXT_LINKFUNC_HI_1      = 0x00B28908
+	, EXT_LINKFUNC_LO_1      = 0x00B28914
+	, EXT_LINKFUNC_HI_2      = 0x00B2891C
+	, EXT_LINKFUNC_LO_2      = 0x00B28928
+	, EXT_LINKFUNC_HI_3      = 0x00B28930
+	, EXT_LINKFUNC_LO_3      = 0x00B2893C
 };
 
 /* OoT NTSC 1.0
@@ -106,6 +121,16 @@ enum {
 	, DMA_BLANK_LAST         = 1525        // last blank dma entry
 	
 	, ACTID_LINK             = 0           // link's actor id
+	
+	, EXT_LINKOFFSET         = 0x00B74400  // vrom start, end link ofs
+	, EXT_LINKFUNC_HI_0      = 0x00B0D5B8  // hi/lo pairs of link funcs
+	, EXT_LINKFUNC_LO_0      = 0x00B0D5C0
+	, EXT_LINKFUNC_HI_1      = 0x00B0D5C8
+	, EXT_LINKFUNC_LO_1      = 0x00B0D5D4
+	, EXT_LINKFUNC_HI_2      = 0x00B0D5DC
+	, EXT_LINKFUNC_LO_2      = 0x00B0D5E8
+	, EXT_LINKFUNC_HI_3      = 0x00B0D5F0
+	, EXT_LINKFUNC_LO_3      = 0x00B0D5FC
 }; */
 
 /* valid (fmt, bpp) options for png functions */
@@ -131,6 +156,61 @@ enum bool
 	, true = 1
 	, compress = 1
 };
+
+/* helper function that writes lui, addiu pair into rom;
+   hi and lo must point to lui and addiu opcodes, respectively */
+void
+split_ptr(struct rom *rom, int ptr, int hi, int lo)
+{
+	int v;
+	int tell;
+	
+	/* back up rom address */
+	tell = rom.tell();
+	
+	/* update hi part of pointer */
+	rom.seek(hi + 2);
+	v = u16(ptr >> 16);
+	if (u16(ptr) & 0x8000)
+		v++;
+	rom.write16(v);
+	
+	/* update low part of pointer */
+	rom.seek(lo + 2);
+	rom.write16(ptr);
+	
+	/* restore rom address */
+	rom.seek(tell);
+}
+
+/* inject ovl_player_actor that has been reassembled with CAT */
+void
+ovl_player_actor(struct rom *rom)
+{
+	char *fn;
+	char *ovl;
+	int vram;
+	
+	fn = "misc/ovl_player_actor.zovl";
+	ovl = rom.inject(fn, compress);
+	if (!ovl)
+		die("could not open '%s'", fn);
+	
+	/* update table entry */
+	rom.seek(EXT_LINKOFFSET);
+	rom.write32(rom.file_start());
+	rom.write32(rom.file_end());
+	vram = rom.read32();
+	vram = u32op(vram, "+", ovl_vram_sz(ovl, rom.file_sz()));
+	rom.write32(vram);
+	
+	/* update function pointers */
+	rom.seek(rom.file_start());
+	split_ptr(rom, rom.read32(), EXT_LINKFUNC_HI_0, EXT_LINKFUNC_LO_0);
+	split_ptr(rom, rom.read32(), EXT_LINKFUNC_HI_1, EXT_LINKFUNC_LO_1);
+	split_ptr(rom, rom.read32(), EXT_LINKFUNC_HI_2, EXT_LINKFUNC_LO_2);
+	split_ptr(rom, rom.read32(), EXT_LINKFUNC_HI_3, EXT_LINKFUNC_LO_3);
+}
 
 /* helper function that zeroes out skipped table entries */
 void
@@ -836,6 +916,9 @@ main(int argc, char **argv)
 	rom.dma_queue(DMA_UNUSED_FIRST, DMA_UNUSED_LAST); /* unused     */
 	rom.dma_queue(DMA_BLANK_FIRST , DMA_BLANK_LAST ); /* remainder  */
 	
+	/* extras */
+	rom.dma_queue_one(DMA_OVL_PLAYER_ACTOR); /* link's overlay */
+	
 	/* NOTE: if none of your scenes will use prerendered *
 	 *       skyboxes, mark them as well so their space  *
 	 *       can be put to good use                      */
@@ -844,6 +927,7 @@ main(int argc, char **argv)
 	rom.dma_ready();
 	
 	/* construct rom */
+	ovl_player_actor(rom);
 	actor(rom);
 	particle(rom);
 	object(rom);
