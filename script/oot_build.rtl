@@ -3,8 +3,8 @@
  *******************************************************/
 
 /* how to use */
-/* uncomment the enum associated with the OoT version you  *
- * are targeting, and comment out or delete the others     */
+/* uncomment the enum associated with the OoT version you *
+ * are targeting, and comment out or delete the others    */
 
 /* OoT debug */
 enum {
