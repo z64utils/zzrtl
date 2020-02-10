@@ -19,7 +19,7 @@ The easiest thing you can do is drag-and-drop `oot_dump.rtl` onto `zzrtl.exe`. T
 
 Once `oot_dump.rtl` finishes executing, `project.zzrpl` and some folders containing resources will be created. Now you can run `oot_build.rtl` to build a new rom.
 
-The resulting rom will be `build.z64`, and its compressed counterpart will be `build-yaz.z64`. The initial compression will take a minute or two because it builds a cache, but subsequent compressions are faster. If you wish to disable compression, edit `oot_build.rtl`.
+The resulting rom will be `build.z64`, and its compressed counterpart will be `build-yaz.z64`. The initial compression will take a minute or two because it builds a cache, but subsequent compressions are faster. Other `zzrtl`-compatible codecs can be found [on this repo](https://github.com/z64me/z64enc). If you wish to disable compression, edit `oot_build.rtl`.
 
 The default build scripts should do everything most people require. If you need extra functionality, read the manual.
 http://www.z64.me/tools/zzrtl/manual
