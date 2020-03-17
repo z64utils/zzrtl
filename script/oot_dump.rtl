@@ -714,11 +714,11 @@ main(int argc, char **argv)
 	
 	/* create .zzrpl */
 	fp = fopen("project.zzrpl", "wb");
-	fprintf(fp, "zzrtl          v0.01\n");
-	fprintf(fp, "baserom        \"%s\"\n", name);
+	fprintf(fp, "zzrtl                   v0.01\n");
+	fprintf(fp, "baserom                 \"%s\"\n", name);
 	/* zzplayas support */
-	fprintf(fp, "VROM_CODE      \"'%s'+0x%08X\"\n", name, VROM_CODE);
-	fprintf(fp, "VROM_PLAYER    \"'%s'+0x%08X\"\n", name, VROM_PLAYER);
+	fprintf(fp, "ZZPLAYAS_VROM_CODE      \"'%s'+0x%08X\"\n", name, VROM_CODE);
+	fprintf(fp, "ZZPLAYAS_VROM_PLAYER    \"'%s'+0x%08X\"\n", name, VROM_PLAYER);
 	fclose(fp);
 	
 	/* cleanup */
