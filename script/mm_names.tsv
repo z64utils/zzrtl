@@ -1,0 +1,691 @@
+index	inhex	scene	object	actor	particle (TODO)
+0	0x0000	World - Southern Swamp (Clear)	(intentionally blank)	Player	
+1	0x0001	unused	Various Gameplay Objects		
+2	0x0002	unused	Various Field Objects	Shop Inventory Data	
+3	0x0003	unused	Various Dungeon Objects		
+4	0x0004	unused	Anju's Grandmother	Flame	
+5	0x0005	unused	Octorok	Wooden Door	
+6	0x0006	unused	Guay	Treasure Chest	
+7	0x0007	Misc - Grottos	Anju's Mother	Gekko (Mini-Boss)	
+8	0x0008	Misc - Cutscene Map	Great Fairy & Healing Beam	Octorok (Field Enemy)	
+9	0x0009	unused	Wallmaster & Floormaster	Powder Keg	
+10	0x000A	Shop - Magic Hag's Potion Shop	Dodongo	Wallmaster	
+11	0x000B	Boss - Majora's Lair	Keese	Dodongo	
+12	0x000C	Misc - Beneath the Graveyard	Treasure Chest & Glow	Keese	
+13	0x000D	Shop - Curiosity Shop	Madame Aroma	Child Epona (Cutscenes)	
+14	0x000E	unused	Shabom & Stray Fairy Bubble	Collectible Field Items	
+15	0x000F	unused	Cucco	Arrow	
+16	0x0010	House - Ranch House & Barn	Fierce Deity Link	Tatl (Gameplay) & Healing Fairy	
+17	0x0011	Minigame - Honey & Darling's Shop	Child Link	Cucco (Friendly)	
+18	0x0012	House - Mayor's Residence	Tektite	Tektite	
+19	0x0013	World - Ikana Canyon	Mr. Barten		
+20	0x0014	World - Pirates' Fortress	Peahat	Peahat	
+21	0x0015	Shop - Milk Bar	Anju (Wedding Dress)	Butterfly	
+22	0x0016	Dungeon - Stone Tower Temple	Moon Mask	Bug	
+23	0x0017	Minigame - Treasure Chest Shop	Dinolfos	Fish	
+24	0x0018	Dungeon - Stone Tower Temple (Inverted)	Wedding Dress Mannequin	Room Transition Plane	
+25	0x0019	World - Clock Tower Rooftop	Child Zelda [OoT]	Dinolfos	
+26	0x001A	World - Opening Cave	Anju Animations [todo]	Flagpole	
+27	0x001B	Dungeon - Woodfall Temple		Child Zelda [OoT]	
+28	0x001C	World - Path to Mountain Village	Kafei		
+29	0x001D	World - Ancient Castle of Ikana	Death Armos	Shabom	
+30	0x001E	Minigame - Deku Scrub Playground		Door Shutter	
+31	0x001F	Boss - Odolwa's Lair			
+32	0x0020	Minigame - Town Shooting Gallery	Skulltula, Skullwalltula, Gold Skulltula Token	Zora Fins	
+33	0x0021	Dungeon - Snowhead Temple		Elegy Statues	
+34	0x0022	World - Milk Road	Takkuri	Frog I [todo]	
+35	0x0023	World - Pirates' Fortress (Interior)			
+36	0x0024	Minigame - Swamp Shooting Gallery		Skulltula	
+37	0x0025	World - Pinnacle Rock			
+38	0x0026	Fountain - Great Fairy's Fountain		Directional Sign & Square Sign [Early]	
+39	0x0027	World - Swamp Spider House		Stone Tower Temple Inverter	
+40	0x0028	World - Oceanside Spider House		Sound Effects I	
+41	0x0029	World - Astral Observatory			
+42	0x002A	Dungeon - The Deku Trial	Bomb Flower		
+43	0x002B	World - Deku Palace			
+44	0x002C	Shop - Mountain Smithy			
+45	0x002D	World - Termina Field		Death Armos	
+46	0x002E	House - Post Office			
+47	0x002F	House - Marine Research Lab		Bomb Flower	
+48	0x0030	House - Dampe's House	Armos & Armos Statue		
+49	0x0031	unused	Deku Baba, Wilted Deku Baba, Mini Baba		
+50	0x0032	World - Goron Shrine		Armos	
+51	0x0033	World - Zora Hall		Deku Baba	
+52	0x0034	Shop - Trading Post		Deku Nut Effect	
+53	0x0035	World - Romani Ranch		Spin Attack & Sword Beam Effects	
+54	0x0036	Boss - Twinmold's Lair			
+55	0x0037	World - Great Bay Coast			
+56	0x0038	World - Zora Cape		Blue Warp & Boss Lair Warps	
+57	0x0039	Shop - Lottery Shop		Torch Stand (Generic)	
+58	0x003A	unused		Heart Container	
+59	0x003B	World - Pirates' Fortress (Exterior)		Mad Scrub (Field Enemy)	
+60	0x003C	House - Fisherman's Hut		Red Bubble	
+61	0x003D	Shop - Goron Shop		Hookshot	
+62	0x003E	World - Deku King's Chamber	Blue Warp	Blue Bubble	
+63	0x003F	Dungeon - The Goron Trial		Fountain Water	
+64	0x0040	World - Road to Southern Swamp	Mad Scrub		
+65	0x0041	World - Doggy Racetrack		Trees & Bushes	
+66	0x0042	World - Cucco Shack			
+67	0x0043	World - Ikana Graveyard		Gomess	
+68	0x0044	Boss - Goht's Lair		Gomess' Bats	
+69	0x0045	World - Southern Swamp (Poisoned)			
+70	0x0046	World - Woodfall			
+71	0x0047	Dungeon - The Zora Trial		Beamos	
+72	0x0048	World - Goron Village (Spring)			
+73	0x0049	Dungeon - Great Bay Temple		Environment Effects	
+74	0x004A	World - Waterfall Rapids		Floormaster	
+75	0x004B	World - Beneath the Well			
+76	0x004C	World - Zora Hall Rooms		Redead	
+77	0x004D	World - Goron Village (Winter)		Stone Tower Temple Elevator [Early]	
+78	0x004E	World - Goron Graveyard		Golden Gauntlets Rock	
+79	0x004F	World - Sakon's Hideout		Group of Bugs, Fish, Butterflies	
+80	0x0050	World - Mountain Village (Winter)		Skullwalltula	
+81	0x0051	Minigame - Ghost Hut	Red & Blue Bubble		
+82	0x0052	World - Deku Shrine	Gomess & Bats		
+83	0x0053	World - Road to Ikana			
+84	0x0054	Minigame - Swordsman's School		Child Epona (Gameplay)	
+85	0x0055	House - Music Box House		Grotto Hole	
+86	0x0056	Boss - Igos Du Ikana's Lair			
+87	0x0057	House - Tourist Information			
+88	0x0058	World - Stone Tower			
+89	0x0059	World - Stone Tower (Inverted)			
+90	0x005A	World - Mountain Village (Spring)			
+91	0x005B	World - Path to Snowhead			
+92	0x005C	World - Snowhead	Stone Tower Temple Elevators [Early], Platforms [Early], Shifting Blocks	Treasure Chest Glow	
+93	0x005D	World - Path to Goron Village (Winter)	Composer Brothers		
+94	0x005E	World - Path to Goron Village (Spring)			
+95	0x005F	Boss - Gyorg's Lair	Flagpole	Majora Balloon (Astral Observatory)	
+96	0x0060	World - Secret Shrine		Rock & Beam of Light [OoT]	
+97	0x0061	House - Stock Pot Inn	Trees & Bushes	Clock Tower Helix Path	
+98	0x0062	Misc - Great Bay (Cutscene)		Reflectable Ray of Light [todo]	
+99	0x0063	World - Inside the Clock Tower			
+100	0x0064	World - Woods of Mystery	Blade Trap	Shellblade	
+101	0x0065	World - Lost Woods		Mad Jelly	
+102	0x0066	Dungeon - The Link Trial		Withered Deku Baba & Mini Baba	
+103	0x0067	World - The Moon		Gorman Bros.	
+104	0x0068	Shop - Bomb Shop			
+105	0x0069	Misc - Giants' Chamber		Adult Ruto [OoT]	
+106	0x006A	World - Gorman Track	Beamos	Bombchu	
+107	0x006B	World - Goron Racetrack			
+108	0x006C	World - East Clock Town		Like Like	
+109	0x006D	World - West Clock Town			
+110	0x006E	World - North Clock Town			
+111	0x006F	World - South Clock Town			
+112	0x0070	World - Laundry Pool	Rock & Beam of Light [OoT]		
+113	0x0071				
+114	0x0072				
+115	0x0073				
+116	0x0074				
+117	0x0075		Redead & Gibdo		
+118	0x0076		Mountain Village Ladder, Chimney Smoke, Embers		
+119	0x0077		Golden Gauntlets Rock		
+120	0x0078				
+121	0x0079			Fishing Pond & Proprietor [OoT]	
+122	0x007A			Pushblock	
+123	0x007B			Spin Attack Charge Particles	
+124	0x007C			Horse Jumping Fence	
+125	0x007D		Child Epona	Collectible Fire Arrows	
+126	0x007E			Collectible Ice Arrows	
+127	0x007F			Collectible Light Arrows	
+128	0x0080		Torch Stand		
+129	0x0081			Wooden Crate (Small)	
+130	0x0082			Pot	
+131	0x0083				
+132	0x0084			Iron Knuckle	
+133	0x0085				
+134	0x0086		Small Key (Get Item)		
+135	0x0087		Mirror Shield Light Ray [todo]		
+136	0x0088		Clock Tower Gear & Helix Path		
+137	0x0089				
+138	0x008A		Boss Doors	Deku Scrub Guard (Deku King's Chamber)	
+139	0x008B			Tatl Text Trigger Spot	
+140	0x008C				
+141	0x008D			Flying Pot	
+142	0x008E		Shellblade	Ice Sparkle Effect	
+143	0x008F		Music Notes (Get Item)	Freezard	
+144	0x0090		Recovery Heart (Get Item)	Grass	
+145	0x0091		Compass (Get Item)	Magic Bean Plant	
+146	0x0092		Boss Key (Get Item)	Bombable Rock	
+147	0x0093			Switches	
+148	0x0094		Deku Nuts (Get Item)		
+149	0x0095			Dampé's House Elevator	
+150	0x0096		Heart Container (Boss Lairs)	Stone Hookshot Pillar	
+151	0x0097		Quivers (Get Item)	Ocarina Song Spot	
+152	0x0098		Bomb Bags (Get Item)		
+153	0x0099		Gorman Bros.	Snowball & Rolling Boulder [todo]	
+154	0x009A				
+155	0x009B				
+156	0x009C			Carpenter (Clock Town)	
+157	0x009D			Cucco Chick	
+158	0x009E		Empty Bottle (Get Item)		
+159	0x009F		Deku Stick (Get Item)	Pirate Lieutenant	
+160	0x00A0		Dungeon Map & Stone of Agony (Get Item)		
+161	0x00A1		Goron (Generic), Medigoron, Powder Keg Shop Goron, Don Gero [todo]	Dynamic Shadow	
+162	0x00A2		Adult Ruto [OoT]		
+163	0x00A3				
+164	0x00A4		Magic Jars (Get Item)	Gorman	
+165	0x00A5		Bomb (Get Item)	Magic Bean Seller	
+166	0x00A6			Grog	
+167	0x00A7		Cremia	Boat Cruise Canoe	
+168	0x00A8		Wallets (Get Item)	Square Sign	
+169	0x00A9				
+170	0x00AA			Cucco (Attacking)	
+171	0x00AB		Like Like		
+172	0x00AC				
+173	0x00AD				
+174	0x00AE			Marine Scientist	
+175	0x00AF		Arrow Bundles (Get Item)	Owl	
+176	0x00B0		Bombchu (Get Item)	Rock	
+177	0x00B1			Orange Graveyard Flower	
+178	0x00B2			Sun Switch	
+179	0x00B3		Hero's Shield (Get Item)	Grass & Rock Cluster	
+180	0x00B4		Hookshot (Get Item)		
+181	0x00B5		Ocarina of Time (Get Item)	Honey & Darling (Gameplay)	
+182	0x00B6		Milk (Get Item)		
+183	0x00B7		Romani		
+184	0x00B8			Water Spout	
+185	0x00B9			Rock Sirloin	
+186	0x00BA				
+187	0x00BB		Spiked Metal Mine		
+188	0x00BC		Frog		
+189	0x00BD			Part-Timer	
+190	0x00BE				
+191	0x00BF		Hero's Bow (Get Item)	Moon Child	
+192	0x00C0		Lens of Truth (Get Item)		
+193	0x00C1		Red, Blue, Green Potion (Get Item)		
+194	0x00C2		Part-Timer		
+195	0x00C3		Mirror Shield (Get Item)		
+196	0x00C4			Song of Storms Effect I [todo]	
+197	0x00C5			Title Logo	
+198	0x00C6		Magic Bean (Get Item)	Green Tatl Target Spot	
+199	0x00C7		Fish (Get Item)	Stone Tower Temple Platform [Early]	
+200	0x00C8				
+201	0x00C9				
+202	0x00CA			Scarecrow	
+203	0x00CB		Biggoron's Sword (Get Item)		
+204	0x00CC			Sun's Song Effect	
+205	0x00CD				
+206	0x00CE			Treasure Chest (Grotto)	
+207	0x00CF				
+208	0x00D0		Zora		
+209	0x00D1				
+210	0x00D2		Horse Jumping Fence		
+211	0x00D3				
+212	0x00D4			Cursed Skulltula Man	
+213	0x00D5				
+214	0x00D6			Song of Time Effect	
+215	0x00D7		Mamamu Yan	Song of Storms Effect II [todo]	
+216	0x00D8		Iron Knuckle		
+217	0x00D9		Bearded Man [OoT]	Jelly Droplets	
+218	0x00DA		Thin Woman in Blue Dress [OoT]	Deku Nut Projectile	
+219	0x00DB				
+220	0x00DC				
+221	0x00DD		Anju's Broom		
+222	0x00DE		Shikashi		
+223	0x00DF		Bomb Shop Proprietor's Mother	Epona's Song Effect	
+224	0x00E0		Anju's Umbrella	Saria's Song Effect	
+225	0x00E1				
+226	0x00E2		Anju	Dog (Generic)	
+227	0x00E3		Bank Teller, Jugglers, Sakon, Bomb Shop Bag	Gold Skulltula Token	
+228	0x00E4		Freezard	Beehive	
+229	0x00E5		Carpenter Boss's Wife [OoT]	Wooden Crate (Large)	
+230	0x00E6		Pirate Lieutenant		
+231	0x00E7		Mini-Game Point Textures		
+232	0x00E8			Rupee Cluster	
+233	0x00E9			Honey & Darling (Cutscenes)	
+234	0x00EA				
+235	0x00EB				
+236	0x00EC		Stone Hookshot Pillar	White Wolfos & Wolfos (Field Enemy)	
+237	0x00ED		Dampé's House Elevator & Falling Block Row	Stalchild (Generic)	
+238	0x00EE		Magic Bean Plant		
+239	0x00EF		Snowball & Rolling Boulder	Gossip Stone	
+240	0x00F0		Mutoh	Sound Effects II	
+241	0x00F1		Carpenter	Guay (Field Enemy)	
+242	0x00F2		Cucco Chick		
+243	0x00F3		[Empty]	Cow	
+244	0x00F4		Magic Bean Seller		
+245	0x00F5		Grog		
+246	0x00F6			Scarecrow's Song Effect	
+247	0x00F7		Sun Switch		
+248	0x00F8		Grass	Zora [Early]	
+249	0x00F9		Pot		
+250	0x00FA			Aveil	
+251	0x00FB				
+252	0x00FC		Square Sign	Bronze Boulder	
+253	0x00FD		Owl		
+254	0x00FE		Marine Scientist	Postman's Letter to Himself	
+255	0x00FF		Guru-Guru		
+256	0x0100		Keaton Mask  (Get Item)		
+257	0x0101				
+258	0x0102		Captain's Hat (Get Item)	Majora Pushblock	
+259	0x0103		Bunny Hood (Get Item)	Blade Trap	
+260	0x0104		Mask of Truth  (Get Item)		
+261	0x0105			Armos Statue	
+262	0x0106		Water Spout	Bumper	
+263	0x0107		Postman		
+264	0x0108				
+265	0x0109			Dragonfly	
+266	0x010A				
+267	0x010B				
+268	0x010C				
+269	0x010D			Grass Cluster	
+270	0x010E				
+271	0x010F		Swordsman		
+272	0x0110		Bombers & Jim		
+273	0x0111				
+274	0x0112			Circle of Light [todo]	
+275	0x0113		SOLD OUT (Get Item)	Garo Master I [todo]	
+276	0x0114			Falling Block Row	
+277	0x0115		Title Logo	Igos du Ikana & Henchmen [todo]	
+278	0x0116			Warp to Trial Entrance	
+279	0x0117			Mamamu Yan	
+280	0x0118				
+281	0x0119		Goron Mask (Get Item)		
+282	0x011A		Zora Mask (Get Item)		
+283	0x011B				
+284	0x011C			Bomber I [todo]	
+285	0x011D		Pierre	Shooting Gallery Proprietors [todo]	
+286	0x011E				
+287	0x011F		Ganon's Tower Gate [OoT]	Icicle	
+288	0x0120			Guay (Shooting Gallery)	
+289	0x0121		Fire, Ice, Light Arrows (Get Item)		
+290	0x0122		Potion Shop Proprietor [OoT]	Thin Woman in Blue Dress [OoT]	
+291	0x0123			Bomb Shop Proprietor's Mother [Early]	
+292	0x0124		Fishing Pond & Proprietor [OoT]	Shikashi	
+293	0x0125		Gold Skulltula Token (Get Item)	Spiderweb	
+294	0x0126				
+295	0x0127		Cursed Skulltula Man		
+296	0x0128		Gekko (Mini-Boss), Mad Jelly, Droplets		
+297	0x0129		Treasure Chest Game Employee & Mayor's Receptionist	Odolwa	
+298	0x012A		Bombable Rock & Powder Keg Boulder	Twinmold	
+299	0x012B		Mad Scrub (Sleeping)	Gyorg	
+300	0x012C		Bomb Shop Proprietor	Wart	
+301	0x012D			Bio Deku Baba	
+302	0x012E		Patrolling Pirate Guard	Igos du Ikana [todo]	
+303	0x012F			Majora	
+304	0x0130		Aveil	Great Fairy	
+305	0x0131				
+306	0x0132		Dog		
+307	0x0133		Wooden Crate (Large)		
+308	0x0134		Deku Scrub Guard (Royal Chamber)		
+309	0x0135		Deku Scrub Guard [todo]		
+310	0x0136				
+311	0x0137		Bug (Get Item)		
+312	0x0138			Goron (Generic) [todo]	
+313	0x0139		Poe Soul (Get Item)		
+314	0x013A		Fairy's Spirit (Get Item)	Carnivorous Lilypad	
+315	0x013B			Stone Tower Smoke Plume [Early]	
+316	0x013C			Elevator (Deku Palace & Woodfall Temple) [todo]	
+317	0x013D			Wooden Flower	
+318	0x013E			Potted Plant	
+319	0x013F		Rupees (Get Item)	Spiked Log (Horizontal)	
+320	0x0140		Honey & Darling	Boss Remains	
+321	0x0141		Wolfos	Wolfos (Shooting Gallery)	
+322	0x0142		Stalchild	Ice Pushblock	
+323	0x0143		Gossip Stone	Frozen Enemy Ice Block	
+324	0x0144		Ghost Hut Proprietor	Snapper (Mini-Boss)	
+325	0x0145		Cow Barn Roof (Interior)	Mad Scrub (Shooting Gallery)	
+326	0x0146		Cow		
+327	0x0147			Frog II [todo]	
+328	0x0148		Kokiri Sword (Get Item)	Tree Trunk	
+329	0x0149				
+330	0x014A			Chuchu	
+331	0x014B		Child Zelda (Cutscenes)	Desbreko	
+332	0x014C		Goron Link	Clock Tower Spotlight	
+333	0x014D		Zora Link	Clock Town 2D Chimney Backdrop	
+334	0x014E		Dragonfly	Stock Pot Inn Bell	
+335	0x014F		Bumper	Octorok (Shooting Gallery)	
+336	0x0150				
+337	0x0151			West Clock Town Bank Shutter	
+338	0x0152			Child Zelda (Cutscenes)	
+339	0x0153		Proximity-Activated Fire Wall	Group of Stray Fairies	
+340	0x0154		Deku Link		
+341	0x0155		Garo Master	Nejiron	
+342	0x0156		Igos du Ikana & Henchmen	Spiked Log (Vertical)	
+343	0x0157		Icicle	Romani Ranch Chimney Smoke	
+344	0x0158		Spiderweb		
+345	0x0159			Kafei	
+346	0x015A		Odolwa	Three-Day Timer	
+347	0x015B		Twinmold [todo]	Bad Bat	
+348	0x015C		Gyorg & Fish	Mikau's Grave & Song Pedestals [Early]	
+349	0x015D		Wart & Bubbles	Wizzrobe	
+350	0x015E		Bio Deku Baba	Wizzrobe Warp Platform	
+351	0x015F		[Removed]	Wizzrobe Fire Attack	
+352	0x0160		Majora	Camera Refocuser	
+353	0x0161		Carnivorous Lilypad	Elegy Statue Light Beam [todo]	
+354	0x0162		Stone Tower Smoke Plume [Early]	Circle of Flames	
+355	0x0163			Ladder	
+356	0x0164		Wooden Flower	Black & White Boes	
+357	0x0165		Potted Plant	Great Fairy's Mask & Great Fairy's Sword	
+358	0x0166		Spiked Log		
+359	0x0167		Frozen Enemy Ice Block		
+360	0x0168			Boat Cruise Target Spot	
+361	0x0169		Tree Trunk & Opening Cutscene Objects [todo]	Hallucinatory Mad Scrubs	
+362	0x016A		Chuchu	Deku King	
+363	0x016B		Desbreko & Skullfish		
+364	0x016C		Stock Pot Inn Bell	Spiked Iron Fence	
+365	0x016D		Clock Tower Spotlight, Romani Ranch Chimney Smoke, Clock Town 2D Chimney Backdrop, West Clock Town Bank Shutter	Powder Keg Boulder	
+366	0x016E				
+367	0x016F		Wooden Crate (Small)	Real Bombchu	
+368	0x0170		Owl Statue	Dripping Water	
+369	0x0171		Nejiron	Keaton Grass Cluster	
+370	0x0172		Bad Bat	Proximity-Activated Fire Wall	
+371	0x0173		Triforce Song Pedestal		
+372	0x0174		Goron Song Pedestal	Great Bay Temple Gears	
+373	0x0175		Kokiri Song Pedestal	Great Fairy Healing Beam	
+374	0x0176		Song of Soaring Pedestal	Tingle (Gameplay)	
+375	0x0177			Bank Teller	
+376	0x0178		Wizzrobe, Warp Platform, Fire Attack	Pirates' Fortress Telescope	
+377	0x0179		Ladder	Drifting Ice Platform	
+378	0x017A		Black & White Boe	Deku Scrub Guard (Palace Gardens)	
+379	0x017B				
+380	0x017C				
+381	0x017D			Postman (Counting Game)	
+382	0x017E		Fountain Water, Spiked Iron Fence, Field Volcano Backdrop	Deku Shrine Door Shutters	
+383	0x017F		Boat Cruise Canoe	Deku Butler	
+384	0x0180			Skullfish	
+385	0x0181		Real Bombchu	Skullfish (Defeated)	
+386	0x0182		Dripping Water	Garo Master II [todo]	
+387	0x0183			Deku Flower	
+388	0x0184		Great Bay Temple Gears, See-Saw, Water Spout, Elevator	Eyegore	
+389	0x0185		Tingle & Confetti	Spiked Metal Mine	
+390	0x0186		Pirates' Fortress Telescope		
+391	0x0187		Drifting Ice Platform	Koume (Gameplay) [todo]	
+392	0x0188		Falling Moon	Kotake (No Broom) [todo]	
+393	0x0189				
+394	0x018A		Deku Shrine Door Shutters		
+395	0x018B		Deku King	Spring Water	
+396	0x018C		Clock Tower & Light Beam	Song of Time Cutscene Effects	
+397	0x018D		Eyegore, Rubble, Block	Beaver Bros.	
+398	0x018E		Koume & Broom	Eyegore Rubble	
+399	0x018F		Kotake & Broom	Snowhead Temple Central Pillar	
+400	0x0190		Snowhead Temple Central Pillar, Bombable Wall, Punchable Pillar Inserts	Opening Cutscene Objects	
+401	0x0191			Skull Kid	
+402	0x0192		Skull Kid, Flute, Ocarina, Link Mask, Majora's Mask	Tatl & Tael (Cutscenes) II [todo]	
+403	0x0193			Woodfall Temple Rises Cutscene Objects	
+404	0x0194			Ocarina of Time & Majora's Mask (Clock Tower Roof) [todo]	
+405	0x0195		Monkey	Happy Mask Salesman (Cutscenes)	
+406	0x0196		Bottled Red Potion (Get Item)	Tatl & Tael (Cutscenes) I [todo]	
+407	0x0197		Clock Tower Doors	Masks (Cutscenes)	
+408	0x0198		Beaver Bros.	Mountain Village Cutscene Objects [todo]	
+409	0x0199		Beaver Race Ring	Milk Bar Stage (Cutscenes)	
+410	0x019A		Deku Palace Water & Swamp Volcano Backdrop	Turtle (Cutscenes) [todo]	
+411	0x019B		Poe Balloon	Giant Bee (Cutscenes)	
+412	0x019C		Goron Race Magic Pot	Clock Tower & Light Beam	
+413	0x019D		Donkey		
+414	0x019E		Big Octo	Monkey	
+415	0x019F		Deku Emblem Door & Skull Kid Spotlights	Eyegore Block	
+416	0x01A0		Honey & Darling's Shop Rotating Platform & Moat	Deku Scrub Guard (Palace Entrance) [todo]	
+417	0x01A1		Honey & Darling's Shop Target & Basket	Snowhead Temple Bombable Wall	
+418	0x01A2		Woodfall Temple Rises Cutscene Objects [todo]	Clock Tower Doors	
+419	0x01A3		Happy Mask Salesman	Snowhead Temple Punchable Pillar Inserts	
+420	0x01A4		Clock Tower Roof Door	Romani I [todo]	
+421	0x01A5		Lilypad	Beaver Race Ring	
+422	0x01A6		Snapper	Poe Balloon	
+423	0x01A7		Woodfall Prison Ivy		
+424	0x01A8		Lens of Truth Platform	Big Octo	
+425	0x01A9		Fisherman	Ice Arrow Platform	
+426	0x01AA		Potion Shop Proprietor (Updated) [OoT]	Triforce Elevator	
+427	0x01AB		Curiosity Shop Proprietor		
+428	0x01AC		Swamp Tourist Center Guide & Shooting Gallery Proprietors	Deku Emblem Door	
+429	0x01AD		Ice Block	Skull Kid Spotlights	
+430	0x01AE		Bottled Zora Egg (Get Item)	Honey & Darling's Shop Rotating Platform	
+431	0x01AF		Dampé	Poured Water	
+432	0x01B0		West Clock Town Steps	Stray Fairy	
+433	0x01B1		Moon's Tear (Get Item)	Stray Fairy Bubble	
+434	0x01B2		Title Deeds (Get Item)		
+435	0x01B3		Dissolvable Light Block	Honey & Darling's Shop Target	
+436	0x01B4		Treasure Chest Game Proximity-Activated Wall	Honey & Darling's Shop Basket	
+437	0x01B5		Dexihand	Happy Mask Salesman (Gameplay)	
+438	0x01B6		Soldier	Clock Tower Gear	
+439	0x01B7		Snow-Covered Tree	Kotake (Broom) [todo]	
+440	0x01B8		Giant	Clock Tower Roof Door	
+441	0x01B9		Beehive	Lilypad	
+442	0x01BA		Orange Graveyard Flower	Snapper (Enemy)	
+443	0x01BB		Goht & Debris	Treasure Chest Game Proximity-Activated Wall	
+444	0x01BC		Ladder & Stone Wall	Honey & Darling's Shop Moat	
+445	0x01BD		Deku Mask (Get Item)	Business Scrub (Flying) [todo]	
+446	0x01BE			Woodfall Prison Ivy	
+447	0x01BF		Goron Shrine Gate		
+448	0x01C0		Dampé's House Stairs	Lens of Truth Platform	
+449	0x01C1		Dampé's House Facade	Treasure Chest Game Employee	
+450	0x01C2		Gravestone	Fisherman (Great Bay Village)	
+451	0x01C3		Poe	Potion Shop Proprietor (Updated) [OoT]	
+452	0x01C4		Big & Small Eeno	Curiosity Shop Proprietor	
+453	0x01C5		Poe Sisters	Swamp Tourist Center Guide	
+454	0x01C6		Hiploop		
+455	0x01C7		Goron Switch	Soldier (Gate Guard)	
+456	0x01C8		Tatl & Tael (Cutscenes)	Ice Block	
+457	0x01C9		Captain Keeta Race Gatepost	Deku Scrub Playground Employee	
+458	0x01CA		Powder Keg (Get Item)	Dampé	
+459	0x01CB		Postbox		
+460	0x01CC		Boss Remains	West Clock Town Steps	
+461	0x01CD		Tent-Shaped Spider Web	Deku Scrub Playground Elevator	
+462	0x01CE		Zora Egg	Song of Soaring Cutscene Activator	
+463	0x01CF		Zubora	Dissolvable Light Block	
+464	0x01D0		Darmani's Ghost	Reflectable Ray of Light [todo]	
+465	0x01D1		Swordsman's School Practice Log	Dexihand	
+466	0x01D2		Darmani's Gravestone	Deku Scrub Playground Rupee	
+467	0x01D3		Hot Spring Water	Dampé's House Objects	
+468	0x01D4		Deku Princess	Snow-Covered Tree	
+469	0x01D5		Biggoron & Link the Goron	Postman (Delivering Letters)	
+470	0x01D6		Gabora	2D Music Staff	
+471	0x01D7		Marine Research Lab Fish		
+472	0x01D8				
+473	0x01D9		Mask of Scents (Field Model)	Piece of Heart	
+474	0x01DA		Keaton Mask (Field Model)	Gibdo (Ikana Well)	
+475	0x01DB		Bunny Hood (Field Model)	Giant	
+476	0x01DC		Captain's Hat (Field Model)	Large Snowball	
+477	0x01DD		Blast Mask (Field Model)	Goht	
+478	0x01DE		Mask of Truth (Field Model)	Ghost Hut Proprietor & Ikana Guard	
+479	0x01DF		Goron Elder's Son	Monkey Instrument Prompt	
+480	0x01E0		Beneath the Grave Curtain, Bombable Wall, Flat's Tomb	Goron Shrine Gate	
+481	0x01E1		Goron Transformation Assets		
+482	0x01E2		Zora Transformation Assets	Dampé's House Facade	
+483	0x01E3		Deku Transformation Assets	Gravestone	
+484	0x01E4		Fierce Deity Transformation Assets	Goron Switch	
+485	0x01E5		Business Scrub & Deku Scrub Playground Employee		
+486	0x01E6			Big & Small Eeno	
+487	0x01E7		Ice Arrow Platform		
+488	0x01E8		Gold Dust (Get Item)	Poe Sisters	
+489	0x01E9		Bottled Gold Dust (Get Item)	Hiploop	
+490	0x01EA		Bottled Hylian Loach (Get Item)	Goht Debris	
+491	0x01EB		Giant Bee	Fireworks	
+492	0x01EC		Seahorse		
+493	0x01ED		Deep Python	Wind Funnel	
+494	0x01EE		Swordsman's School Gong & Wooden Board	Dog (Doggie Racetrack)	
+495	0x01EF		Hylian Loach (Get Item)	Swordsman	
+496	0x01F0		Seahorse (Get Item)	Captain Keeta Race Gatepost	
+497	0x01F1		Big Poe	Marine Research Lab Fish	
+498	0x01F2		Cow Figurine	Postbox	
+499	0x01F3		Deku Butler	Poe	
+500	0x01F4			Tent-Shaped Spider Web	
+501	0x01F5		Oceanside Spider House Bombable Wall, Fireplace Grate, Skull Kid Painting, Drawers & Bookshelf	Zora Egg	
+502	0x01F6		Rock	Zubora	
+503	0x01F7			Darmani's Ghost I [todo]	
+504	0x01F8		Goron Elder & Drum	Swordsman's School Practice Log	
+505	0x01F9		Razor Sword (Get Item)	Small Snowball	
+506	0x01FA		Gilded Sword (Get Item)	Darmani's Ghost II [todo]	
+507	0x01FB		Great Fairy's Sword (Get Item)	Darmani's Gravestone	
+508	0x01FC		Cremia's Cart	Deku Princess	
+509	0x01FD		Gibdo Mask (Field Model)	Biggoron	
+510	0x01FE		Garo's Mask (Field Model)	Hot Spring Water	
+511	0x01FF		Kafei's Mask (Field Model)	Gabora	
+512	0x0200		Great Fairy Mask (Field Model)		
+513	0x0201		Leever	Goron Elder's Son	
+514	0x0202		Milk Bar Chair	Anju (Gameplay)	
+515	0x0203		Stone Tower Temple Mirror, Rotating Room, Bombable Floor Tile & Wall, Light Ray [todo], Lattice Door, Ancient Castle of Ikana Punchable Pillar Segments		
+516	0x0204			Giant Bee (Gameplay)	
+517	0x0205		String of Flags & Carnival Platform	Seahorse	
+518	0x0206		Mikau, Guitar, Grave [todo]	Deep Python	
+519	0x0207		Deku Moon Trial Rotating Platform	Swordsman's School Gong	
+520	0x0208		Postman's Hat, Bag, Closet Curtain	Big Poe	
+521	0x0209		Garo's Mask (Get Item)	Swordsman's School Wooden Board	
+522	0x020A		Great Fairy Mask (Get Item)	Cow Figurine	
+523	0x020B		Gibdo Mask (Get Item)		
+524	0x020C		Twinmold's Lair Objects [todo]		
+525	0x020D		Fork-Branched Tree	Beneath the Grave Curtain	
+526	0x020E		Pirates' Fortress Mesh Elevator, Interior Door, Boat	Oceanside Spider House Bombable Wall	
+527	0x020F		Room Key (Get Item)	Oceanside Spider House Fireplace Grate	
+528	0x0210		Letter to Kafei (Get Item)	Oceanside Spider House Skull Kid Painting	
+529	0x0211		Japas	Oceanside Spider House Drawers & Bookshelf	
+530	0x0212		Milk Bar Stage (Cutscenes)	Circle of Stalchildren	
+531	0x0213		Masks (Cutscenes)	Goron Elder	
+532	0x0214		Giant's Mask (Field Model)	Koume (Boat Cruise) [todo]	
+533	0x0215		Pendant of Memories (Get Item)	Cremia's Cart	
+534	0x0216		Tijo	Leever	
+535	0x0217		Great Bay Whirlwind	Milk Bar Chair	
+536	0x0218		Palm Tree		
+537	0x0219		Romani's Mask (Field Model)	Stone Tower Temple Mirror	
+538	0x021A		[Empty]	Stone Tower Temple Rotating Room	
+539	0x021B			Great Bay Temple See-Saw	
+540	0x021C			Great Bay Temple Water Spout	
+541	0x021D		Magic Mushroom (Get Item)	Pirate [todo]	
+542	0x021E		Goron Shrine Chandelier	Patrolling Pirate Guard	
+543	0x021F		Romani's Mask (Get Item)	Romani II [todo]	
+544	0x0220		Evan	Cremia	
+545	0x0221		Postman's Hat (Field Model)	South Clock Town Objects	
+546	0x0222		Elegy Statue Switch	Great Bay Temple Elevator	
+547	0x0223		Moon	Owl Statue	
+548	0x0224		Boat Cruise Target Spot	Mikau	
+549	0x0225		Postman's Hat (Get Item)	Deku Moon Trial Rotating Platform	
+550	0x0226		Giant's Mask (Get Item)	Goron Elder's Drum	
+551	0x0227		Bottled Chateau Romani (Get Item)	Twinmold's Lair Objects [todo]	
+552	0x0228		Pictograph Box (Get Item)	Zora (Land)	
+553	0x0229		Turtle & Tsunami	Fork-Branched Tree	
+554	0x022A		Pamela's Father	Pirates' Fortress Mesh Elevator	
+555	0x022B		Lulu	Pirates' Fortress Interior Door	
+556	0x022C		Music Box House Cupboard Doors	Pirates' Fortress Boat	
+557	0x022D			Barrel	
+558	0x022E			Geyser	
+559	0x022F			Boat Cruise Target	
+560	0x0230		Astral Observatory & Marine Research Lab Door	Reflectable Ray of Light [todo]	
+561	0x0231		Zora Hall Interior Door	Japas	
+562	0x0232		Swamp Tourist Center & Swamp Shooting Gallery Door		
+563	0x0233		Magic Hags' Potion Shop Door		
+564	0x0234		Link Moon Trial Bombable Wall, Climbable Wall, Door	Toto	
+565	0x0235		Beneath the Well Interior Door	Gibdo (Ikana Canyon)	
+566	0x0236		Ancient Castle of Ikana Objects [todo]	Bomb Shop Proprietor's Mother	
+567	0x0237		Sharp's Cave & Ikana Canyon Objects [todo]	Sakon	
+568	0x0238		Pamela	Tijo	
+569	0x0239		Hookshot Stump	Lottery Shop Kiosk	
+570	0x023A		Toto	Don Gero	
+571	0x023B			Mushroom Scent Cloud	
+572	0x023C		Sakon's Hideout Objects [todo]	Palm Tree	
+573	0x023D		Geyser	Swarm of Moths	
+574	0x023E		Ghost Alien	Wart's Bubbles	
+575	0x023F		Flock of Seagulls	Gyorg's Fish	
+576	0x0240		Swarm of Giant Bees	Goron Village Chandelier	
+577	0x0241		Mayor Dotour	Evan	
+578	0x0242		Fierce Deity Mask (Get Item)	Goron (Goron Shrine & Bomb Shop) [todo]	
+579	0x0243		Laundry Pool Bell [todo]	Anju's Grandmother (Gameplay)	
+580	0x0244		Cremia & Romani's Dinner	Jugglers	
+581	0x0245		Letter to Mama (Get Item)	Stone Tower Temple Shifting Block	
+582	0x0246		Moon Fall Effects	Elegy Statue Switch	
+583	0x0247		Viscen	Composer Brothers	
+584	0x0248		Gorman	Guru-Guru	
+585	0x0249		Igos du Ikana & Henchmen's Heads	Sonata of Awakening Effect	
+586	0x024A		Kamaro	Shiro	
+587	0x024B		Rosa Sisters	Song of Soaring Effect	
+588	0x024C		Circus Leader's Mask (Field Model)	Business Scrub (Observatory Telescope) & Grotto	
+589	0x024D		Tingle's Map (Get Item)	Guay (Observatory Telescope)	
+590	0x024E		Stone Mask (Field Model)	Song of Healing Effect	
+591	0x024F		Hand in Toilet	Turtle's Tsunami	
+592	0x0250		Barrel	Pamela's Father (Normal)	
+593	0x0251			Pamela's Father (Cursed)	
+594	0x0252		Bremen Mask (Field Model)	Lulu	
+595	0x0253		Bomber's Notebook (Get Item)	Anju's Mother (Gameplay)	
+596	0x0254		Stone Mask (Get Item)	Music Box House Cupboard Doors	
+597	0x0255		Blue Spotlight Effect	Stone Tower Temple Bombable Floor Tile & Wall	
+598	0x0256		Gorman Track Buildings	Stone Tower Temple Light Ray [todo]	
+599	0x0257		Cow Barn Roof (Exterior)	Stone Tower Temple Lattice Door	
+600	0x0258		Kafei's Mask (Get Item)	Beneath the Grave Bombable Wall	
+601	0x0259		Circus Leader's Mask (Get Item)	Flat's Tomb	
+602	0x025A		Bremen Mask (Get Item)	Large Rotating Green Rupee	
+603	0x025B		Deku Butler's Son	Sharp's Cave	
+604	0x025C		Don Gero's Mask (Field Model)	Ikana Canyon Objects	
+605	0x025D		All-Night Mask (Field Model)	Pamela	
+606	0x025E		Couple's Mask (Field Model)	Hookshot Stump	
+607	0x025F		Kamaro's Mask (Field Model)	Mad Scrub (Sleeping)	
+608	0x0260		Metal Portcullis	Zora (Water)	
+609	0x0261		Chateau Romani Delivery Bottle	Green Check Spot	
+610	0x0262		Secret Shrine Interior Door	Madame Aroma (Gameplay)	
+611	0x0263		Lottery Shop Kiosk	Mr. Barten	
+612	0x0264		Keaton	Bomb Shop Bag	
+613	0x0265		All-Night Mask (Get Item)		
+614	0x0266		Don Gero's Mask (Get Item)	Guay (Circling Clock Town)	
+615	0x0267		Astral Observatory Bombable Wall	Flock of Seagulls	
+616	0x0268		Captain Keeta		
+617	0x0269		Falling Moon	Swarm of Giant Bees	
+618	0x026A			Carpenter (Milk Road)	
+619	0x026B		Sun Mask (Get Item)	Mutoh (Gameplay)	
+620	0x026C			Viscen	
+621	0x026D		Blast Mask (Get Item)	Soldier (Mayor's Residence)	
+622	0x026E		Stockpot Inn Window	Soldier (Cutscenes) I [todo]	
+623	0x026F		Ikana Canyon Curse Lifted Effects	Mayor Dotour (Gameplay)	
+624	0x0270		Moon (Cutscenes)	Laundry Pool Bell [todo]	
+625	0x0271		Moon Child	Cremia & Romani's Dinner	
+626	0x0272		Bottled Fairy (Get Item)	Moon Fall Effects	
+627	0x0273			Ancient Castle of Ikana Punchable Pillar Segments	
+628	0x0274		Lottery Shop, Curiosity Shop, Mayor's Residence Door	Business Scrub (Burrowed) [todo]	
+629	0x0275		Trading Post & Post Office Door	Skull Kid Moon-Summoning Effects [todo]	
+630	0x0276		Stockpot Inn & Swordsman's School Door	Link the Goron	
+631	0x0277		Skull Kid Animation File [todo]	Goron (Goron Racetrack)	
+632	0x0278		Swamp Spider House Interior Door	Igos du Ikana & Henchmen's Heads	
+633	0x0279		Oceanside Spider House Interior Door		
+634	0x027A		Brown Bird	Kamaro	
+635	0x027B		Milk Bar Door	Rosa Sisters	
+636	0x027C		Music Box House Door		
+637	0x027D		Kamaro's Mask (Get Item)	Hand in Toilet	
+638	0x027E		Mask of Scents (Get Item)	Jim I [todo]	
+639	0x027F		Rainbow Hookshot Pillar	Jim II [todo]	
+640	0x0280		Majora Balloon	Bomber II [todo]	
+641	0x0281		Epilogue Cutscene Objects [todo]	Bomber (Hideout Guard)	
+642	0x0282		Couple's Mask (Get Item)	Majora Balloon (North Clock Town)	
+643	0x0283			Moon's Tear	
+644	0x0284			Music Box House Picture Checkspots	
+645	0x0285			Ancient Castle of Ikana Objects [todo]	
+646	0x0286			Blue Spotlight Effect	
+647	0x0287			Gorman Track Buildings	
+648	0x0288			Cow Barn Roof (Exterior)	
+649	0x0289			Deku Butler's Son	
+650	0x028A			Metal Portcullis	
+651	0x028B			Chateau Romani Delivery Bottle	
+652	0x028C			Keaton	
+653	0x028D			Astral Observatory Bombable Wall	
+654	0x028E			Hot Checkered Ceiling [todo]	
+655	0x028F			Captain Keeta	
+656	0x0290			Mayor's Receptionist	
+657	0x0291			Takkuri	
+658	0x0292			Fisherman (Fisherman's Jumping Game)	
+659	0x0293			Torch Stand (Fisherman's Jumping Game)	
+660	0x0294			Stockpot Inn Window	
+661	0x0295			Ikana Canyon Curse Lifted Effects	
+662	0x0296			Moon (Cutscenes)	
+663	0x0297			Rainbow Hookshot Pillar	
+664	0x0298			Link Moon Trial Bombable & Climbable Walls	
+665	0x0299			Anju (Wedding Dress)	
+666	0x029A				
+667	0x029B			Deku Shrine & Snowhead Temple Elevator [todo]	
+668	0x029C			Falling Moon	
+669	0x029D			Madame Aroma (Cutscenes)	
+670	0x029E			Anju Cutscene Animations	
+671	0x029F			Anju's Mother (Cutscenes)	
+672	0x02A0			Anju's Grandmother (Cutscenes)	
+673	0x02A1			Wedding Dress Mannequin	
+674	0x02A2			Mayor Dotour (Cutscenes)	
+675	0x02A3			Tingle (Cutscenes)	
+676	0x02A4			Tingle Confetti	
+677	0x02A5			Stalchild (Oceanside Spider House)	
+678	0x02A6				
+679	0x02A7			Brown Bird	
+680	0x02A8			Viscen (Cutscenes)	
+681	0x02A9			Mutoh (Cutscenes)	
+682	0x02AA			Soldier (Cutscenes) II [todo]	
+683	0x02AB			Carpenter (Cutscenes)	
+684	0x02AC				
+685	0x02AD				
+686	0x02AE				
+687	0x02AF				
+688	0x02B0			Epilogue Cutscene Objects	
+689	0x02B1			Bomb Shop Proprietor	
