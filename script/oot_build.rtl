@@ -339,6 +339,9 @@ system_overlay(struct rom *rom)
 		/* ovl_map_mark_data */
 		else if (i == 6)
 			rom.write32(conf.get_int("dungeon_mark_data"));
+		/* override vram with one in conf, if present */
+		if (conf.exists("vram"))
+			vram = conf.get_int("vram");
 		
 		/* advance to next */
 		dir_leave();
