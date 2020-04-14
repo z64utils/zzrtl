@@ -324,7 +324,13 @@ system_overlay(struct rom *rom)
 		
 		rom.write32(rom.file_start());  /* vrom start  */
 		rom.write32(rom.file_end());    /* vrom end    */
-		vram = rom.read32();            /* vram start  */
+		if (conf.exists("vram"))        /* custom vram */
+		{
+			vram = conf.get_int("vram");
+			rom.write32(vram);           /* vram start  */
+		}
+		else
+			vram = rom.read32();         /* vram start  */
 		rom.write32(vram + vram_sz);    /* vram end    */
 		
 		/* game state overlays */
@@ -339,9 +345,6 @@ system_overlay(struct rom *rom)
 		/* ovl_map_mark_data */
 		else if (i == 6)
 			rom.write32(conf.get_int("dungeon_mark_data"));
-		/* override vram with one in conf, if present */
-		if (conf.exists("vram"))
-			vram = conf.get_int("vram");
 		
 		/* advance to next */
 		dir_leave();
