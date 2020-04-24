@@ -2,7 +2,7 @@ zzrtl starter guide
 
 This guide assumes you already have `zzrtl` (available on www.z64.me) and a clean OoT debug rom. Though it is compatible with all OoT/MM roms, you must first decompress them, so we're using the OoT debug rom for this example because it is already decompressed.
 
-Note to Windows users: Use Notepad++ with C syntax highlighting for the optimal editing experience.
+Note to Windows users: Use [Notepad++](https://notepad-plus-plus.org/) with C syntax highlighting for the optimal editing experience.
 
 Now here are all the steps for dumping and building OoT:
 
