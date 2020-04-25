@@ -48,7 +48,9 @@ enum {
 	, DMA_G_PN_FIRST         = 880         // g_pn_01
 	, DMA_G_PN_LAST          = 936         // g_pn_57
 	, DMA_SKYBOX_FIRST       = 941         // vr_fine0_static
-	, DMA_SKYBOX_LAST        = 1004        // vr_FCVR_pal_static
+	, DMA_SKYBOX_LAST        = 960         // vr_holy1_pal_static
+	, DMA_PRERENDER_FIRST    = 961         // vr_MDVR_static
+	, DMA_PRERENDER_LAST     = 1004        // vr_FCVR_pal_static
 	, DMA_SCENE_FIRST        = 1007        // syotes_scene
 	, DMA_SCENE_LAST         = 1517        // test01_room_0
 	, DMA_UNUSED_FIRST       = 1518        // bump_texture_static
@@ -118,7 +120,9 @@ enum {
 	, DMA_G_PN_FIRST         = 880         // g_pn_01
 	, DMA_G_PN_LAST          = 936         // g_pn_57
 	, DMA_SKYBOX_FIRST       = 941         // vr_fine0_static
-	, DMA_SKYBOX_LAST        = 1004        // vr_FCVR_pal_static
+	, DMA_SKYBOX_LAST        = 960         // vr_holy1_pal_static
+	, DMA_PRERENDER_FIRST    = 961         // vr_MDVR_static
+	, DMA_PRERENDER_LAST     = 1004        // vr_FCVR_pal_static
 	, DMA_SCENE_FIRST        = 1007        // ddan_scene
 	, DMA_SCENE_LAST         = 1495        // ganontikasonogo_room_1
 	, DMA_UNUSED_FIRST       = 1496        // bump_texture_static
@@ -1045,9 +1049,9 @@ main(int argc, char **argv)
 	rom.dma_compress(DMA_ITEM_FIELD, DMA_ITEM_LOCALIZED, true);
 	rom.dma_compress(DMA_CODE      , TBL_DMA_ENTRIES   , true);
 	
-	/* disable compression on skybox palettes */
+	/* disable compression on skybox palettes (including pre-renders) */
 	i = DMA_SKYBOX_FIRST + 1;
-	while (i <= DMA_SKYBOX_LAST)
+	while (i <= DMA_PRERENDER_LAST)
 	{
 		rom.dma_compress_one(i, false);
 		i = i + 2;
