@@ -832,7 +832,7 @@ main(int argc, char **argv)
 	fprintf(fp, "baserom                 \"%s\"\n", name);
 	/* zzplayas support */
 	fprintf(fp, "ZZPLAYAS_VROM_CODE      \"'%s'+0x%08X\"\n", name, VROM_CODE);
-	fprintf(fp, "ZZPLAYAS_VROM_PLAYER    \"'%s'+0x%08X\"\n", name, VROM_PLAYER);
+	fprintf(fp, "ZZPLAYAS_VROM_PLAYER    \"'system/overlay/ovl_player_actor/ovl_player_actor.zovl'\"\n");
 	fclose(fp);
 	
 	/* cleanup */
