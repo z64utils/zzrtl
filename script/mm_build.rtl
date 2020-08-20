@@ -374,7 +374,7 @@ archive(struct rom *rom, char *codec)
 			if (strcmp(codec, "yaz"))
 			{
 				printf("begin rearchiving %s...\n", name);
-				rom.dma_rearchive_one(dma, "yaz", codec, false);
+				rom.dma_rearchive_one(dma, "yaz", codec, true);
 			}
 		}
 		
