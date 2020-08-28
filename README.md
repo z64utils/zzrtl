@@ -1,4 +1,8 @@
-zzrtl starter guide
+### zzrtl expert guide
+
+For those already familiar with the starter guide (below) who want bleeding-edge functionality, please check out [jaredemjohnson's repo](https://github.com/jaredemjohnson/zzrtl-audio). It makes editing sounds/music/text (and more!) easier.
+
+### zzrtl starter guide
 
 This guide assumes you already have `zzrtl` (available on www.z64.me) and a clean OoT debug rom. Though it is compatible with all OoT/MM roms, you must first decompress them, so we're using the OoT debug rom for this example because it is already decompressed.
 
