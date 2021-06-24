@@ -1,0 +1,121 @@
+r4 changes
+	- system() fancy filenames
+	- TODO : zzrtl() function for executing extra script
+	- TODO : rom.flag() function ex rom.flag("dma1", 1),
+	         rom.flag("minpad", 1);
+	- TODO : minpad needs to do something
+	- rom.dma_register() function for registering an offset
+	  at which to write a dma index value after sorting
+	- rom.dma_offset() function for retrieving offset of
+	  file by dma index
+	- rom.inject_prefix() function for adding a prefix to
+	  an injected file; call rom.dma_prefix() after file
+	  injection to get a pointer to the prefix to edit
+	- rom.inject_mode() allows customizing file injection
+	  behavior; pass 0 to use default, or a string:
+	    "earliest" : use earliest available block
+	                 (injects nearer to beginning of rom)
+	    "latest"   : use latest available block
+	                 (injects nearer to end of rom)
+	    "smallest" : use smallest available block
+	    "largest"  : use largest available block
+	    "default"  : behaves the same as "smallest"
+	    "0" or 0   : use "default"
+	- TODO : icon
+	- TODO : char *gui_file("save"/*or open*/) function
+	- TODO : rom.file_dummy(data, numbytes) for packing data
+	         after a compressed file
+	         , no... for packing data before a file! ^^
+	- TODO : 'strings' become "strings" in .rtl source code
+	- TODO : rom.inject_zip(zipname, filename) will inject a
+	         file from within a .zip file
+	- TODO : injecting %d/%d is wrong
+	- TODO : static.txt, static/ directory (will use a function
+	         rom.inject_mode("static")
+
+r3 credits
+	- /Zel/ - MM script collaboration
+
+r3 changes
+	- final changes to make MM scripts possible
+	- MM scripts are now available
+	- updated OoT scripts
+	- dump scripts now work on compressed roms
+	- extension assertion: zzrtl now complains if
+	  provided with a file not of the extension .rtl
+	- raw data assertion: zzrtl now complains if
+	  provided with a file that doesn't contain some
+	  form of "int main" (e.g. an html file saved
+	  with the .rtl extension)
+	- added a function file_exists(fn) to check if a
+	  file exists (returns 1 if it does, 0 otherwise)
+	- rom.inject_dma() function added for injecting
+	  a file over a known existing DMA entry
+	  (file-size must match file being overwritten)
+	  (rom.inject_raw_dma() also available)
+	- rom.extract_dma() function added for extracting
+	  a file of a known DMA index
+	- .next() and .remaining() are now able to be
+	  used with conf files of type list, for the
+	  purpose of stepping through list items
+	- .name() and .value() functions for retrieving
+	  the name and value (as strings) of the
+	  selected conf list item have been added
+	- an int_array() function to make up for zzrtl
+	  not supporting int array[32]; type declarations
+	- a new_string() function for easy string building
+	- rom version checking to reduce weird errors
+	  encountered from using a dump/build script with
+	  a rom not supported by it
+	- loadfile() function added
+	- tsv_col_row() function added
+
+r2 changes
+	- faster compression
+	- compression ratio is now printed afterwards
+	- removed zx7 codec (was slower than ucl and
+	  had a worse compression ratio than ucl)
+	- added aplib codec (better ratio than ucl, and
+	  faster load times than ucl on Wii VC; the only
+	  downside is roms take a few minutes to compress)
+	- lzo and aplib patches are now available
+
+r2 credits
+	- Mikau6 - hardware testing
+
+r1 changes
+	- added compression codecs ucl, xz7, slowyaz
+	- added support for deleted files in MM dmadata
+	  specification (aka pstart == pend == -1)
+	- added rearchive(), file_dma(), and cloudpatch()
+	- added --compress command line argument so zzrtl
+	  can be used as a standalone rom compressor
+	- added --nocache command line argument for doing
+	  compression without generating a cache folder
+	- added --cloudpatch command line argument for
+	  easy command line cloudpatching
+	- added --help command line argument so a massive
+	  wall of documentation doesn't pop up and scare
+	  double-clickers away
+	- stability improvements
+	- when compressing a file makes it larger, its
+	  uncompressed counterpart is used instead
+	- better compressed file packing
+
+r1 notes
+	- individual files compressed with slowyaz are
+	  byte-identical to those in retail roms; aside
+	  from weird corner cases, there is no reason
+	  you should use slowyaz; it is slower than yaz
+	  and produces files slightly larger than yaz...
+	- it should now contain everything necessary
+	  to support Majora's Mask
+
+r1 credits
+	- Mikau6, CrookedPoe - hardware testing
+
+r0 changes
+	- fixed compression bug
+
+r0 credits
+	- AriaHiro: bug reports, testing
