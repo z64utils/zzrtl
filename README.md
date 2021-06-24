@@ -1,29 +1,22 @@
-### zzrtl expert guide
+# zzrtl
 
-For those already familiar with the starter guide (below) who want bleeding-edge functionality, please check out [jaredemjohnson's repo](https://github.com/jaredemjohnson/zzrtl-audio). It makes editing sounds/music/text (and more!) easier.
+`zzrtl` is a filesystem management utility for Ocarina of Time and Majora's Mask. Filesystems are dumped and injected by way of the highly customizable scripts it interprets. It has built-in compression features, and projects built to my specification work on both original Nintendo 64 hardware and Wii Virtual Console.
 
-### zzrtl starter guide
+Scripts for dumping and rebuilding OoT and MM's filesystems are available in this repo's [`script`](script) directory. Should you wish to tailor them to your project's specific needs, read the [manual](MANUAL.md). Use a plaintext editor with C syntax highlighting for the optimal editing experience. For Windows users, I recommend [Notepad++](https://notepad-plus-plus.org/).
 
-This guide assumes you already have `zzrtl` (available on www.z64.me) and a clean OoT debug rom. Though it is compatible with all OoT/MM roms, you must first decompress them, so we're using the OoT debug rom for this example because it is already decompressed.
+If you are looking for a dedicated compressor, try [`z64compress`](https://github.com/z64me/z64compress).
 
-Note to Windows users: Use [Notepad++](https://notepad-plus-plus.org/) with C syntax highlighting for the optimal editing experience.
+## How do I use this?
 
-Now here are all the steps for dumping and building OoT:
+For beginners, the first paragraph of the [manual](MANUAL.md) is all you need to get started.
 
-Create a new folder.
+For advanced users looking for bleeding-edge functionality, check out [jaredemjohnson's fork](https://github.com/jaredemjohnson/zzrtl-audio). It adds support for sound, music, and text editing.
 
-Put your OoT debug rom in it. Name it `oot-debug.z64`. All lowercase, including the extension. If you don't like this name, edit `oot_dump.rtl`.
+## Showcase
 
-Save `oot_dump.rtl` and `oot_build.rtl` into the folder as well.
+The following projects were made using `zzrtl`.
 
-Linux users: use command line magic to execute `oot_dump.rtl`
+* [Star Fox 64: Survival](https://www.youtube.com/watch?v=TzqfstBv71I)
+* [The Legend of Zelda: The Missing Link](https://www.youtube.com/watch?v=n6hdlxgDixE)
+* [The Lost Dungeon of Ocarina of Time](https://www.youtube.com/watch?v=L5AjSd_KyC8)
 
-Windows users:
-The easiest thing you can do is drag-and-drop `oot_dump.rtl` onto `zzrtl.exe`. The second easiest thing you can do, which is more convenient long-term, would be to right-click `oot_dump.rtl` and associate all `.rtl` files with `zzrtl.exe`. Then you can execute any `.rtl` file by double-clicking it.
-
-Once `oot_dump.rtl` finishes executing, `project.zzrpl` and some folders containing resources will be created. Now you can run `oot_build.rtl` to build a new rom.
-
-The resulting rom will be `build.z64`, and its compressed counterpart will be `build-yaz.z64`. The initial compression will take a minute or two because it builds a cache, but subsequent compressions are faster. Other `zzrtl`-compatible codecs can be found [on this repo](https://github.com/z64me/z64enc). If you wish to disable compression, edit `oot_build.rtl`.
-
-The default build scripts should do everything most people require. If you need extra functionality, read the manual.
-http://www.z64.me/tools/zzrtl/manual
