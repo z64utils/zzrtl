@@ -10,7 +10,7 @@ default: release
 COMMON_FLAGS := -Wall -Wno-unused-variable -Wno-unused-function
 LINK_FLAGS := -lm -lpthread
 DEBUG_FLAGS := -g -Og
-RELEASE_FLAGS := -DNDEBUG -s -flto
+RELEASE_FLAGS := -DNDEBUG=1 -s -flto
 RELEASE_ENC_FLAGS := -Ofast
 RELEASE_OTHER_FLAGS := -Os
 
@@ -30,31 +30,36 @@ PLATFORM := $(shell uname)
 
 ifeq ($(PLATFORM),Linux)
 	CC := gcc
+	EXECUTABLE := zzrtl
 else
 	CC := i686-w64-mingw32.static-gcc
+	EXECUTABLE := zzrtl.exe
 endif
 
 debug: CCFLAGS_ENC := $(COMMON_FLAGS) $(DEBUG_FLAGS)
 debug: CCFLAGS_OTHER := $(COMMON_FLAGS) $(DEBUG_FLAGS)
-debug: zzrtl
+debug: $(EXECUTABLE)
 release: CCFLAGS_ENC := $(COMMON_FLAGS) $(RELEASE_FLAGS) $(RELEASE_ENC_FLAGS)
 release: CCFLAGS_OTHER := $(COMMON_FLAGS) $(RELEASE_FLAGS) $(RELEASE_OTHER_FLAGS)
-release: zzrtl
+release: $(EXECUTABLE)
 
 build/src/enc/%.o: src/enc/%.c $(ENC_HDR)
-	mkdir -p build/src/enc
+	@mkdir -p build/src/enc
+	@mkdir -p build/src/enc/lzo
+	@mkdir -p build/src/enc/ucl/comp
+	@mkdir -p build/src/enc/apultra
 	$(CC) $(CCFLAGS_ENC) -c $< -o $@
 
 build/src/stb/%.o: src/stb/%.c $(STB_HDR)
 	mkdir -p build/src/stb
-	$(CC) $(CCFLAGS_STB) -c $< -o $@
+	$(CC) $(CCFLAGS_OTHER) -c $< -o $@
 
 build/src/%.o: src/%.c $(MAIN_HDR)
 	mkdir -p build/src
-	$(CC) $(CCFLAGS_MAIN) -c $< -o $@
+	$(CC) $(CCFLAGS_OTHER) -c $< -o $@
 
-zzrtl: $(ENC_OBJ) $(STB_OBJ) $(MAIN_OBJ)
-	$(CC) -o $@ $* $(LINK_FLAGS)
+$(EXECUTABLE): $(ENC_OBJ) $(STB_OBJ) $(MAIN_OBJ)
+	$(CC) -o $@ $^ $(LINK_FLAGS)
 
 clean:
-	rm -rf build/ zzrtl
+	rm -rf build/ o/ bin/ $(EXECUTABLE)
