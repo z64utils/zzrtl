@@ -81,7 +81,7 @@ scope_search_name(struct scope *scope, char *str, int len)
 		while (typename)
 		{
 			/* if name fields match */
-			if (!memcmp(typename->name, str, len))
+			if (strlen(typename->name) == len && !memcmp(typename->name, str, len))
 				return typename;
 			
 			/* go to next in list */
@@ -384,7 +384,7 @@ preproc_oo_struct(char *src)
 		}
 		
 		/* add struct type to scope */
-		else if (!memcmp("struct", str, len))
+		else if (!memcmp("struct", str, len) && (isblank(str[len]) || iscntrl(str[len])))
 			active = 1;
 	}
 	
@@ -557,7 +557,7 @@ popscope:
 		}
 		
 		/* add struct type to scope */
-		else if (!memcmp("struct", str, len))
+		else if (!memcmp("struct", str, len) && (isblank(str[len]) || iscntrl(str[len])))
 		{
 			struct typename *type;
 			
@@ -861,4 +861,3 @@ fail:
 	return 1;
 }
 #endif
-

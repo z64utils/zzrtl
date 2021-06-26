@@ -2071,7 +2071,7 @@ get16(void *_data)
 	return (data[0] << 8) | data[1];
 }
 
-/* get 32-bit value from raw data */
+/* get 8-bit value from raw data */
 int
 get8(void *_data)
 {
@@ -2226,7 +2226,8 @@ dir_exists(char *dir)
 	struct stat stat_path;
 	
 	/* stat for the path */
-	stat(dir, &stat_path);
+	if (stat(dir, &stat_path) != 0)
+		return 0; /* stat failed */
 	
 	/* if path does not exist or is not dir, return 0 */
 	if (S_ISDIR(stat_path.st_mode) == 0)
@@ -5221,4 +5222,3 @@ main(void)
 	return 0;
 }
 #endif /* ZZRTL_TEST */
-
