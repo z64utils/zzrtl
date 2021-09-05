@@ -724,6 +724,35 @@ int expr_type;   // the type of an expression
 // 6: local var 2
 int index_of_bp; // index of bp pointer on stack
 
+void errorinfo_line() {
+	char buffer[128] = { 0 };
+	intptr_t target = 0;
+	int i = 0;
+	int strlength = 0;
+
+	printf("[!]: Error... Hang on, gathering information...\n");
+
+	while (target < line - 1) {
+		if (old_src[i] == '\n')
+			target++;
+		i++;
+		if (i > strlen(old_src))
+			break;
+	}
+
+	while(old_src[i] == ' ' || old_src[i] == '\t') {
+		i++;
+	}
+
+	while(old_src[i + strlength - 1] != ';' && old_src[i + strlength] != '\n') {
+		strlength++;
+	}
+
+	memmove(buffer, &old_src[i], strlength);
+	printf("Line:\t\033[31;1m%ld\033[0m\n", line);
+	printf("Func:\033[31;1m\t%s\033[0m\n", buffer);
+}
+
 void next() {
 	char *last_pos;
 	int hash;
@@ -982,7 +1011,8 @@ void match(int tk) {
 	if (token == tk) {
 		next();
 	} else {
-		die("[!] %d: expected token: %d", line, tk);
+		errorinfo_line();
+		die("[!]: expected token: %d", tk);
 	}
 }
 
@@ -1007,7 +1037,8 @@ void expression(int level) {
 	int *addr;
 	{
 		if (!token) {
-			die("[!] %d: unexpected token EOF of expression", line);
+			errorinfo_line();
+			die("[!]: unexpected token EOF of expression");
 		}
 		if (token == Num) {
 			match(Num);
@@ -1103,7 +1134,8 @@ void expression(int level) {
 					*++text = id[Value];
 				}
 				else {
-					die("[!] %d: bad function call", line);
+					errorinfo_line();
+					die("[!]: bad function call");
 				}
 
 				// clean the stack for arguments
@@ -1130,7 +1162,8 @@ void expression(int level) {
 					*++text = id[Value];
 				}
 				else {
-					die("[!] %d: undefined variable", line);
+					errorinfo_line();
+					die("[!]: undefined variable");
 				}
 
 				// emit code, default behaviour is to load the value of the
@@ -1169,7 +1202,8 @@ void expression(int level) {
 			if (expr_type >= XC_PTR) {
 				expr_type = expr_type - XC_PTR;
 			} else {
-				die("[!] %d: bad dereference", line);
+				errorinfo_line();
+				die("[!]: bad dereference");
 			}
 
 			*++text = (expr_type == XC_CHAR) ? LC : LI;
@@ -1181,7 +1215,8 @@ void expression(int level) {
 			if (*text == LC || *text == LI) {
 				text --;
 			} else {
-				die("[!] %d: bad address-of", line);
+				errorinfo_line();
+				die("[!]: bad address-of");
 			}
 
 			expr_type = expr_type + XC_PTR;
@@ -1249,7 +1284,8 @@ void expression(int level) {
 				*text = PUSH;
 				*++text = LI;
 			} else {
-				die("[!] %d: bad lvalue of pre-increment", line);
+				errorinfo_line();
+				die("[!]: bad lvalue of pre-increment");
 			}
 			*++text = PUSH;
 			*++text = IMM;
@@ -1258,7 +1294,8 @@ void expression(int level) {
 			*++text = (expr_type == XC_CHAR) ? SC : SI;
 		}
 		else {
-			die("[!] %d: bad expression", line);
+			errorinfo_line();
+			die("[!]: bad expression");
 		}
 	}
 
@@ -1273,7 +1310,8 @@ void expression(int level) {
 				if (*text == LC || *text == LI) {
 					*text = PUSH; // save the lvalue's pointer
 				} else {
-					die("[!] %d: bad lvalue in assignment", line);
+					errorinfo_line();
+					die("[!]: bad lvalue in assignment");
 				}
 				expression(Assign);
 
@@ -1289,7 +1327,8 @@ void expression(int level) {
 				if (token == ':') {
 					match(':');
 				} else {
-					die("[!] %d: missing colon in conditional", line);
+					errorinfo_line();
+					die("[!]: missing colon in conditional");
 				}
 				*addr = (int)(text + 3);
 				*++text = JMP;
@@ -1483,7 +1522,8 @@ void expression(int level) {
 					*++text = LC;
 				}
 				else {
-					die("[!] %d: bad value in increment", line);
+					errorinfo_line();
+					die("[!]: bad value in increment");
 				}
 
 				*++text = PUSH;
@@ -1512,14 +1552,16 @@ void expression(int level) {
 					*++text = MUL;
 				}
 				else if (tmp < XC_PTR) {
-					die("[!] %d: pointer type expected", line);
+					errorinfo_line();
+					die("[!]: pointer type expected");
 				}
 				expr_type = tmp - XC_PTR;
 				*++text = ADD;
 				*++text = (expr_type == XC_CHAR) ? LC : LI;
 			}
 			else {
-				die("[!] %d: compiler error, token = %d", line, token);
+				errorinfo_line();
+				die("[!]: compiler error, token = %d", token);
 			}
 		}
 	}
@@ -1636,14 +1678,16 @@ void enum_declaration() {
 	i = 0;
 	while (token != '}') {
 		if (token != Id) {
-			die("[!] %d: bad enum identifier %d", line, token);
+			errorinfo_line();
+			die("[!]: bad enum identifier %d", token);
 		}
 		next();
 		if (token == Assign) {
 			// like {a=10}
 			next();
 			if (token != Num) {
-				die("[!] %d: bad enum initializer", line);
+				errorinfo_line();
+				die("[!]: bad enum initializer");
 			}
 			i = token_val;
 			next();
@@ -1681,10 +1725,12 @@ void function_parameter() {
 
 		// parameter name
 		if (token != Id) {
-			die("[!] %d: bad parameter declaration", line);
+			errorinfo_line();
+			die("[!]: bad parameter declaration");
 		}
 		if (current_id[Class] == Loc) {
-			die("[!] %d: duplicate parameter declaration", line);
+			errorinfo_line();
+			die("[!]: duplicate parameter declaration");
 		}
 
 		match(Id);
@@ -1727,11 +1773,13 @@ void function_body() {
 
 			if (token != Id) {
 				// invalid declaration
-				die("[!] %d: bad local declaration", line);
+				errorinfo_line();
+				die("[!]: bad local declaration");
 			}
 			if (current_id[Class] == Loc) {
 				// identifier exists
-				die("[!] %d: duplicate local declaration", line);
+				errorinfo_line();
+				die("[!]: duplicate local declaration");
 			}
 			match(Id);
 
@@ -1830,11 +1878,13 @@ void global_declaration() {
 
 		if (token != Id) {
 			// invalid declaration
-			die("[!] %d: bad global declaration", line);
+			errorinfo_line();
+			die("[!]: bad global declaration");
 		}
 		if (current_id[Class]) {
 			// identifier exists
-			die("[!] %d: duplicate global declaration", line);
+			errorinfo_line();
+			die("[!]: duplicate global declaration");
 		}
 		match(Id);
 		current_id[Type] = type;
