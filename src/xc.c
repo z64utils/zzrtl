@@ -2742,6 +2742,7 @@ invalid_argument:
 	}
 	
 	/* preprocessing */
+	procIncludes(&src);
 	src = preproc_oo_struct(src);
 	
 	src = preproc_remove_comments(src, 1);
