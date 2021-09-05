@@ -885,7 +885,7 @@ void procIncludes(char** str_) {
 		/* skip unsupported include */
 		if (!end) 		{
 			/* TODO error message */
-			die("bad include\n");
+			printf("bad include\n");
 			*this = ' ';
 			continue;
 		}
