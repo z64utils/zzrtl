@@ -809,6 +809,99 @@ preproc_usecontig(int usecontig(char *str))
 	iscontig = usecontig;
 }
 
+/* loads file as string */
+void* loadstring(const char* fn) {
+	FILE* fp;
+	char* dat;
+	size_t sz;
+
+	/* rudimentary error checking returns 0 on any error */
+	if (
+		!fn
+		|| !(fp = fopen(fn, "rb"))
+		|| fseek(fp, 0, SEEK_END)
+		|| !(sz = ftell(fp))
+		|| fseek(fp, 0, SEEK_SET)
+		|| !(dat = malloc(sz + 1))
+		|| fread(dat, 1, sz, fp) != sz
+		|| fclose(fp)
+		)
+		return 0;
+
+	dat[sz] = '\0';
+	return dat;
+}
+
+/* loads file as string (with error checking) */
+void* loadstringSafe(const char* fn) {
+	void* dat = loadstring(fn);
+
+	if (!dat) 	{
+		fprintf(stderr, "failed to load file '%s'\n", fn);
+		exit(EXIT_FAILURE);
+	}
+
+	return dat;
+}
+
+void stringInsert(char** str_, char* start, char* end, const char* src) {
+	char* str = *str_;
+
+	memset(start, ' ', (end - start) + 1);
+
+	/* can fit without realloc */
+	if ((end - start) >= strlen(src)) 	{
+		memcpy(start, src, strlen(src));
+		return;
+	}
+
+	/* resize string to fit new data */
+	/* TODO optimization: add only the exact number of bytes necessary */
+	str = realloc(str, strlen(str) + 1 + strlen(src) + 1);
+	start = (start - *str_) + str;
+	end = (end - *str_) + str;
+	memmove(start + strlen(src), end, strlen(end) + 1);
+	memcpy(start, src, strlen(src));
+
+	*str_ = str;
+}
+
+void procIncludes(char** str_) {
+	char* str = *str_;
+
+	while (1) 	{
+		char* start;
+		char* this;
+		char* end;
+		char* include;
+
+		if (!(this = strstr(str, "#include")))
+			break;
+
+		/* assume only `#include "wow.h"` style includes */
+		start = this + strcspn(this, "\"") + 1;
+		end = strchr(start, '"');
+
+		/* skip unsupported include */
+		if (!end) 		{
+			/* TODO error message */
+			printf("bad include\n");
+			*this = ' ';
+			continue;
+		}
+
+		/* load and process include */
+		*end = '\0';
+		fprintf(stderr, "load '%s'\n", start);
+		include = loadstringSafe(start);
+		procIncludes(&include);
+		stringInsert(&str, this, end, include);
+		free(include);
+	}
+
+	*str_ = str;
+}
+
 #ifdef PREPROC_TEST
 int
 main(int argc, char *argv[])
