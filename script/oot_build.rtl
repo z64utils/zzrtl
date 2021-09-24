@@ -2,6 +2,13 @@
  * <z64.me> zzrtl script for injecting assets into OoT *
  *******************************************************/
 
+/*
+ * This patch shows you how to use optional arguments in
+ * a script. In this example, compression is off by default,
+ * and is enabled by giving the program an extra argument
+ * like so: zzrtl oot_build.rtl --compress
+ */
+
 /* how to use */
 /* uncomment the enum associated with the OoT version you *
  * are targeting, and comment out or delete the others    */
@@ -1027,6 +1034,22 @@ main(int argc, char **argv)
 	char *name;
 	char *comp;
 	int i;
+	int doCompress;
+	
+	/* defaults */
+	doCompress = false;
+	
+	/* parse arguments */
+	i = 0;
+	while (i < argc)
+	{
+		if (strcmp(argv[i], "--compress"))
+		{
+			printf("compression enabled\n");
+			doCompress = true;
+		}
+		i = i + 1;
+	}
 	
 	/* load .zzrpl */
 	rpl = rpl.new("*.zzrpl", "list");
@@ -1085,10 +1108,13 @@ main(int argc, char **argv)
 	rom.save("build.z64");
 	
 	/* compress rom */
-	rom.compress(codec, 32);
-	
-	/* write compressed rom */
-	rom.save(new_string("build-", codec, ".z64", 0));
+	if (doCompress)
+	{
+		rom.compress(codec, 32);
+		
+		/* write compressed rom */
+		rom.save(new_string("build-", codec, ".z64", 0));
+	}
 	
 	/* cleanup */
 	rom.free();
