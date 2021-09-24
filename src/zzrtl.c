@@ -348,7 +348,7 @@ malloc_safe(size_t size)
 {
 	void *result;
 	
-	result = malloc(size);
+	result = calloc(1, size);
 	
 	if (!result)
 		die_i("allocation failure");
