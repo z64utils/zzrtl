@@ -724,46 +724,6 @@ int expr_type;   // the type of an expression
 // 6: local var 2
 int index_of_bp; // index of bp pointer on stack
 
-char* getlines(char* dest, char* str, int lineA, int lineB) {
-	char buffer[1024 * 4] = { 0 };
-	int wp = 0;
-	int lastLinePrint = 0;
-	int line = 1;
-	int processed = 0;
-	int i = 0;
-	int strsz;
-	int strlng = strlen(str);
-
-	while (!processed || line < lineB) {
-		if (str[i] == '\n') {
-			line++;
-			i++;
-		}
-
-		if (line == lineA + processed && line != lastLinePrint) {
-			strsz = 0;
-			while (str[i + strsz] != '\n') {
-				strsz++;
-				if ((i + strsz) > strlng)
-					return;
-			}
-			memmove(&buffer[wp], &str[i], strsz);
-			wp = strsz;
-			lastLinePrint = line;
-			processed++;
-			i++;
-			continue;
-		}
-
-		i++;
-
-		if (i > strlng)
-			return;
-	}
-
-	memmove(dest, buffer, wp);
-}
-
 void printlines(char* str, int lineA, int lineB) {
 	char buffer[1024];
 	int lastLinePrint = 0;
