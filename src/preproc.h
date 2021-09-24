@@ -48,5 +48,8 @@ preproc_remove_comments(char *src, int keep_cchars);
 char *
 preproc_overwrite_token(char *src, char *tok, char *ntok);
 
+/* preprocess #include directives */
+void procIncludes(char** str_);
+
 #endif /* PREPROC_H_INCLUDED */
 
