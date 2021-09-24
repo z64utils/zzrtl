@@ -2,6 +2,14 @@
  * <z64.me> zzrtl script for injecting assets into OoT *
  *******************************************************/
 
+/*
+ * This patch allows you to optionally use separate
+ * room (zmap) files for Adult Link by naming
+ * them room_0.adult, room_1.adult, etc.
+ * It falls back to Young Link room files when the
+ * Adult Link room files are absent.
+ */
+
 /* how to use */
 /* uncomment the enum associated with the OoT version you *
  * are targeting, and comment out or delete the others    */
@@ -513,12 +521,16 @@ scene(struct rom *rom)
 {
 	struct folder *list;
 	struct folder *room;
+	struct folder *adult_room;
 	struct conf *conf;
 	char *room_ptrs;
+	char *adult_room_ptrs;
+	char *which_room_ptrs;
 	char *scene;
 	char *name;
 	char *b;
 	char *b_end;
+	char *b_start;
 	int start;
 	int end;
 	int sz;
@@ -530,9 +542,11 @@ scene(struct rom *rom)
 	int rinit;
 	int room_ct;
 	int index_last;
+	int header_index;
 	
 	/* allocate space for 256 room pointers */
 	room_ptrs = malloc(256 * 4 * 2);
+	adult_room_ptrs = malloc(256 * 4 * 2);
 	
 	/* scenes aligned 0x1000 in retail */
 	rom.align(0x1000);
@@ -612,6 +626,24 @@ scene(struct rom *rom)
 			}
 			room.free();
 			
+			/* inject adult rooms */
+			adult_room = adult_room.new("*.adult");
+			memcpy(adult_room_ptrs, room_ptrs, room_ct * 8);
+			while (adult_room.remaining())
+			{
+				/* injection failure is unacceptable */
+				if (!rom.inject(adult_room.name(), compress))
+					die("'%s' injection failure", adult_room.name());
+				
+				/* add to room pointer list */
+				put32(adult_room_ptrs + adult_room.index() * 8    , rom.file_start());
+				put32(adult_room_ptrs + adult_room.index() * 8 + 4, rom.file_end()  );
+				
+				/* proceed to next adult room */
+				adult_room.next();
+			}
+			adult_room.free();
+			
 			/* update room pointers in first header */
 			if (
 			scene_header_rooms(
@@ -656,16 +688,24 @@ scene(struct rom *rom)
 					die("0x18 cmd: invalid offset %08X", get32(b+4));
 				
 				/* grab alternate header list */
-				b = rom.raw(start + get24(b+5));
+				b_start = rom.raw(start + get24(b+5));
 				
 				/* process list */
+				b = b_start;
 				while (b < b_end)
 				{
+					header_index = (b - b_start) / 4;
+					which_room_ptrs = room_ptrs;
+					
+					/* adult header day/night indices */
+					if (header_index == 1 || header_index == 2)
+						which_room_ptrs = adult_room_ptrs;
+					
 					/* scene header failed in some way; end of list */
 					if (
 					scene_header_rooms(
 						rom
-						, room_ptrs
+						, which_room_ptrs
 						, room_ct
 						, start
 						, sz
@@ -704,6 +744,7 @@ scene(struct rom *rom)
 	
 	/* cleanup */
 	free(room_ptrs);
+	free(adult_room_ptrs);
 	list.free();
 	dir_leave();
 	printf("success!\n");
