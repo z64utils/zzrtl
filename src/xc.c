@@ -746,7 +746,7 @@ void printlines(char* str, int lineA, int lineB) {
 				if ((i + strsz) > strlng)
 					return;
 			}
-			bzero(buffer, 1024);
+			memset(buffer, 0, sizeof(buffer));
 			memmove(buffer, &str[i], strsz);
 			printf("%s\n", buffer);
 			lastLinePrint = line;
