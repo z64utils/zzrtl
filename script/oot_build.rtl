@@ -1043,7 +1043,7 @@ main(int argc, char **argv)
 	i = 0;
 	while (i < argc)
 	{
-		if (strcmp(argv[i], "--compress"))
+		if (!strcmp(argv[i], "--compress"))
 		{
 			printf("compression enabled\n");
 			doCompress = true;
