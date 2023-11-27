@@ -580,7 +580,28 @@ wow_system(char const *path)
 	
 	return rval;
 #else /* not win32 unicode */
+	#ifdef _WIN32
 	return system(path);
+	#else
+	// allow win32 paths on linux builds
+	if (strchr(path, '\\'))
+	{
+		char *tmp = strdup(path);
+		int rval;
+		
+		for (char *c = tmp; *c; ++c)
+			if (*c == '\\')
+				*c = '/';
+		
+		rval = system(tmp);
+		free(tmp);
+		return rval;
+	}
+	else
+	{
+		return system(path);
+	}
+	#endif
 #endif
 }
 
