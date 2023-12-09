@@ -17,6 +17,7 @@
 #include "zzrtl.h"
 #include "preproc.h"
 #include "rnd.h" /* rnd_pcg */
+#include "sha1.h"
 
 #undef   fopen
 #undef   fread
@@ -227,7 +228,7 @@ zzrtl(void)
 	fprintf(
 		stderr, 
 		"/*************************\n"
-		" * zzrtl v1.0.5 <z64.me> *\n"
+		" * zzrtl v1.0.6 <z64.me> *\n"
 		" *************************/\n"
 	);
 	fprintf(
@@ -432,6 +433,7 @@ SCAT,SCMP,SCCM,EXIT
 	, ZZXC_string_list_file
 	, ZZXC_loadfile
 	, ZZXC_tsv_col_row
+	, ZZXC_sha1
 /* directory */
 	, ZZXC_DIR_EXISTS
 	, ZZXC_DIR_ENTER
@@ -541,6 +543,7 @@ SCAT,SCMP,SCCM,EXIT
 " string_list_file " \
 " loadfile " \
 " tsv_col_row " \
+" sha1 " \
 /* directory */ \
 " dir_exists " \
 " dir_enter " \
@@ -2517,6 +2520,18 @@ ZZXC_FUNC_INST_STR[op * 5]
 		else if (op == ZZXC_tsv_col_row)
 		{
 			ax = (int)tsv_col_row((void *)sp[2], (char *)sp[1], *sp);
+		}
+		
+		/* get sha1 checksum of a buffer */
+		else if (op == ZZXC_sha1)
+		{
+			unsigned char checksum[64];
+			char readable[64];
+			
+			stb_sha1(checksum, (stb_uchar *)sp[1], *sp);
+			stb_sha1_readable(readable, checksum);
+			
+			ax = (int)strdup(readable);
 		}
 	
 	/* directory */

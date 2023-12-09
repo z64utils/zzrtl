@@ -52,6 +52,7 @@ static void stb__sha1(stb_uchar *chunk, stb_uint h[5])
    h[4] += e;
 }
 
+static
 void stb_sha1(stb_uchar output[20], stb_uchar *buffer, stb_uint len)
 {
    unsigned char final_block[128];
@@ -119,6 +120,7 @@ void stb_sha1(stb_uchar output[20], stb_uchar *buffer, stb_uint len)
 }
 
 // client can truncate this wherever they like
+static
 void stb_sha1_readable(char display[30], unsigned char sha[20])
 {
    char encoding[65] = "0123456789abcdefghijklmnopqrstuv"
