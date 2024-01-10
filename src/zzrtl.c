@@ -1894,6 +1894,9 @@ loadfile(char *fn, int *sz, int optional)
 	if (!fn)
 		die_i("loadfile no filename given");
 	
+	/* if fn starts with '*', grab by extension */
+	fn = find_extension(fn, 0);
+	
 	data = file_load(fn, &Nsz, 16);
 	if (!data && !optional)
 		die_i("loadfile failed to load '%s'", fn);
