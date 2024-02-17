@@ -434,6 +434,7 @@ SCAT,SCMP,SCCM,EXIT
 	, ZZXC_loadfile
 	, ZZXC_tsv_col_row
 	, ZZXC_sha1
+	, ZZXC_realloc
 /* directory */
 	, ZZXC_DIR_EXISTS
 	, ZZXC_DIR_ENTER
@@ -544,6 +545,7 @@ SCAT,SCMP,SCCM,EXIT
 " loadfile " \
 " tsv_col_row " \
 " sha1 " \
+" realloc " \
 /* directory */ \
 " dir_exists " \
 " dir_enter " \
@@ -650,6 +652,8 @@ SCAT,SCMP,SCCM,EXIT
 	",FSTR" /* string_list_file */ \
 	",LFIL" /* loadfile */ \
 	",TVCR" /* tsv_col_row */ \
+	",SHA1" /* sha1 */ \
+	",RALC" /* realloc */ \
 /* directory */ \
 	",DRXS" /* dir_exists */ \
 	",DREN" /* dir_enter */ \
@@ -2532,6 +2536,21 @@ ZZXC_FUNC_INST_STR[op * 5]
 			stb_sha1_readable(readable, checksum);
 			
 			ax = (int)strdup(readable);
+		}
+		
+		/* load a file */
+		else if (op == ZZXC_realloc)
+		{
+			void *src = (void*)sp[1];
+			int len = (REGXC_INT)*sp;
+			void *result = realloc(src, len);
+			
+			//fprintf(stderr, "realloc %p %p\n", src, len);
+			
+			ax = (int)result;
+			
+			if (!result)
+				die("[!] realloc memory error");
 		}
 	
 	/* directory */
