@@ -2566,6 +2566,7 @@ rom_compress(struct rom *rom, char *enc, int mb)
 	int i;
 	float total_compressed = 0;
 	float total_decompressed = 0;
+	const float toMib = 1.0 / (1024 * 1024);
 	
 	struct compThread *compThread = 0;
 	int numThread = 4; /* TODO make this external */
@@ -2926,8 +2927,8 @@ rom_compress(struct rom *rom, char *enc, int mb)
 #endif
 //		fprintf(stdout, "%08X: %08X %08X\n", dma - rom->dma, dma->Pstart, dma->Pend);
 //		fprintf(stdout, "%08X: %08X %08X %08X\n", dma - rom->dma, dma->start, dma->Pstart, dma->Pend);
-		if (dma->Pend > compsz)
-			die_i("i ran out of compressed rom space");
+		if (comp_total > compsz)
+			continue;
 		
 		/* external cached file logic */
 		if (g_use_cache)
@@ -2944,6 +2945,16 @@ rom_compress(struct rom *rom, char *enc, int mb)
 			memcpy(dst, dma->compbuf, dma->compSz);
 		}
 	}
+	
+	if (comp_total > compsz)
+		die_i(
+			"ran out of compressed rom space\n"
+			"(have: %.2f mib, need: %.2f mib)\n"
+			"(0x%X bytes over limit)"
+			, compsz * toMib, comp_total * toMib
+			, comp_total - compsz
+		);
+	
 	fprintf(stderr, "success!\n");
 	
 	fprintf(
